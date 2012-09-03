@@ -40,10 +40,10 @@ $active_record = TRUE;
 
 $db['default']['hostname'] = "localhost";
 $db['default']['username'] = "root";
-$db['default']['password'] = "pOli2+Ro";
+$db['default']['password'] = "root";
 $db['default']['dbdriver'] = "mysql";;
 $db['default']['dbprefix'] = "";
-$db['default']['database'] = "yage_sanpio";
+$db['default']['database'] = "tix_consultorios";
 $db['default']['pconnect'] = TRUE;
 $db['default']['db_debug'] = TRUE;
 $db['default']['cache_on'] = FALSE;
