@@ -39,7 +39,7 @@
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('lib_edad','lib_tiempo','graph');
+$autoload['libraries'] = array('lib_edad','lib_tiempo');
 
 
 /*
@@ -51,7 +51,7 @@ $autoload['libraries'] = array('lib_edad','lib_tiempo','graph');
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url','form','html','open_flash_chart');
+$autoload['helper'] = array('url','form','html');
 
 
 /*
