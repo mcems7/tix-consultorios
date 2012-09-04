@@ -179,10 +179,35 @@ a:hover.vmenu {text-decoration:underline;font-weight:bold;color:#345827;}
 	text-align:center;
 	font-size:10px;
 	font-weight:bold;
-	color:#3D4B10;
+	color:#ffffff;
 	padding-top:30px;
 	padding-bottom:10px;	
 }
+
+.tabla_pie{}
+.pie_izq{
+	width:20px;
+	height:129px;
+	background:url(../img/pie_izq.png);
+	
+	background-position:right;
+	background-repeat:no-repeat;
+	
+	}
+
+.pie_centro{
+	background:url(../img/pie_centro.png);
+	background-repeat:repeat-x;
+	}
+
+.pie_der{
+	width:27px;
+	height:129px;
+	background:url(../img/pie_der.png);
+	background-position:left;
+	background-repeat:no-repeat;
+	
+	}
 
 .bloque_centro{
 	padding:0px 10px 10px 10px;
@@ -336,8 +361,8 @@ a:hover.vmenu {text-decoration:underline;font-weight:bold;color:#345827;}
 	 border: 2px solid #0000B2;
 	 margin-top: 15px;
 	 padding: 0px;	
-	 background:url('../img/esquinaDer.png') left bottom no-repeat,
-	 url('../img/esquinaInf.png') right bottom no-repeat;
+	 /*background:url('../img/esquinaDer.png') left bottom no-repeat,
+	 url('../img/esquinaInf.png') right bottom no-repeat;*/
 	  background-color:#FFF;
 }
 
@@ -658,3 +683,4 @@ a:hover.vmenu {text-decoration:underline;font-weight:bold;color:#345827;}
 .cvoptions li a.printbutton:hover {
     background: url("img/b-print.gif") no-repeat scroll 0 -23px transparent;
 }
+

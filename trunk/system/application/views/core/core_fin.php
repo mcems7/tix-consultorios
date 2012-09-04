@@ -8,13 +8,18 @@ $empresa = $CI->hospi_impresion_model -> obtenerEmpresa();
   </tr>
   <tr>
     <td colspan="2" class="pie_pagina">
-<?=$empresa['razon_social'].br()?>
-Proyecto OPUS LIBERTATI&nbsp;<?=anchor("http://www.opuslibertati.org","http://www.opuslibertati.org");?>
-<?=br()?>    
-<?=$empresa['direccion'].', '.$empresa['municipio'].' - '.$empresa['departamento'].br()?>
-Telefonos:&nbsp;(<?=$empresa['indicativo'].') '.$empresa['telefono1'].br()?>
-Email:<?=nbs().mailto($empresa['email'],$empresa['email'])?>
-<p>Esta obra es distribuida bajo los términos de la licencia GPL Versión 3.0 <a href="<?=base_url()?>resources/licencia.html" target="_blank">Ver términos de la licencia</a> <img src="<?=base_url()?>resources/images/gplv3-88x31.png" width="88" height="31" /></p> </td>
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td class="pie_izq"></td>
+    <td class="pie_centro">
+    Un producto de TIX S.A.S Su aliado en tecnología <a href="http://www.tix.com.co" target="_blank">www.tix.com.co</a>
+<p>Esta obra es distribuida bajo los términos de la licencia GPL Versión 3.0 <a href="<?=base_url()?>resources/licencia.html" target="_blank">Ver términos de la licencia</a> <img src="<?=base_url()?>resources/images/gplv3-88x31.png" width="88" height="31" /></p>
+    </td>
+    <td class="pie_der"></td>
+  </tr>
+</table>
+
+ </td>
   </tr>
 </table>
 </center>

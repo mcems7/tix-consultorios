@@ -55,8 +55,7 @@ echo form_input($data);
 <td class='campo_centro'>Opciones</td>
 </tr>
 <?php
-$n = count($lista);
-if($n>0)
+if($lista>0)
 {
 	$i = 1;
 	foreach($lista as $d)
