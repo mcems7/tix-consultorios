@@ -60,7 +60,7 @@ function crearAdmisionDb($d)
 ////////////////////////////////////////////////////////////
 function obtenerOrigenesAtencion()
 {
-	$result = $this->db->get('urg_origen_atencion');
+	$result = $this->db->get('core_origen_atencion');
 	return $result->result_array();
 }
 ////////////////////////////////////////////////////////////
@@ -123,7 +123,7 @@ function obtenerAtencion($id_atencion)
 	core_causa_externa.causa_externa');
 	$this->db->from('coam_atencion');
 	$this->db->join('coam_estados_atencion','coam_atencion.id_estado = coam_estados_atencion.id_estado');
-	$this->db->join('urg_origen_atencion','coam_atencion.id_origen = urg_origen_atencion.id_origen','LEFT');
+	$this->db->join('core_origen_atencion','coam_atencion.id_origen = core_origen_atencion.id_origen','LEFT');
   $this->db->join('core_causa_externa','coam_atencion.id_causa_externa = core_causa_externa.id_causa_externa','LEFT');
   $this->db->join('coam_consultorios','coam_atencion.id_consultorio = coam_consultorios.id_consultorio','LEFT');
 	$this->db->where('id_atencion',$id_atencion);
