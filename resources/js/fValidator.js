@@ -33,9 +33,9 @@ var fValidator = new Class({
 		msgContainerTag: "span",
 		msgClass: "fValidator-msg",
 
-		styleNeutral: {"background-color": "#fff", "border-color": "#5F7718"},
-		styleInvalid: {"background-color": "#fcc", "border-color": "#5F7718"},
-		styleValid: {"background-color": "#fff", "border-color": "#5F7718"},
+		styleNeutral: {"background-color": "#fff", "border-color": "#0000B2"},
+		styleInvalid: {"background-color": "#fcc", "border-color": "#0000B2"},
+		styleValid: {"background-color": "#fff", "border-color": "#0000B2"},
 
 		language: "es",
 		languageConfig: {	

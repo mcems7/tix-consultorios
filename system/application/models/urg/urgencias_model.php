@@ -362,10 +362,10 @@ return $result->result_array();
   urg_atencion.activo,
   urg_atencion.id_usuario,
   urg_atencion.anexo2,
-  urg_origen_atencion.origen');
+  core_origen_atencion.origen');
   $this->db->from('urg_atencion');
   $this->db->join('urg_estados_atencion','urg_atencion.id_estado = urg_estados_atencion.id_estado');
-  $this->db->join('urg_origen_atencion','urg_atencion.id_origen = urg_origen_atencion.id_origen','LEFT');
+  $this->db->join('core_origen_atencion','urg_atencion.id_origen = core_origen_atencion.id_origen','LEFT');
   $this->db->join('core_servicios_hosp','urg_atencion.id_servicio = core_servicios_hosp .id_servicio','LEFT');
 	$this->db->where('id_atencion',$id_atencion);
 	$result = $this->db->get();
@@ -449,7 +449,7 @@ return $result->result_array();
 //////////////////////////////////////////////////////////////////////////////////////////////////////////	
 	function obtenerOrigenesAtencion()
 	{
-		$result = $this->db->get('urg_origen_atencion');
+		$result = $this->db->get('core_origen_atencion');
 		return $result->result_array();
 	}
 //////////////////////////////////////////////////////////////////////////////////////////////////////////	
@@ -2018,7 +2018,7 @@ return $result->result_array();
 	function obtenerOrigenAtencion($id_origen)
 	{
 		$this->db->WHERE('id_origen',$id_origen);
-		$result = $this->db->get('urg_origen_atencion');
+		$result = $this->db->get('core_origen_atencion');
 		return $result->row_array();
 	}
 //////////////////////////////////////////////////////////////////////////////////////////////////////////

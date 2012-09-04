@@ -56,7 +56,7 @@ h1 a:visited, h2 a:visited, h3 a:visited, h4 a:visited, h5 a:visited, h6 a:visit
 
 input, select, text
 {
-  border-color:#5F7718; 
+  border-color:#0000B2; 
   border-style:solid; 
   border-width:1px;
   border-collapse:collapse; 
@@ -67,7 +67,7 @@ img{
 }
 
 textarea{
-  border-color:#5F7718; 
+  border-color:#0000B2; 
   border-style:solid; 
   border-width:1px;
   border-collapse:collapse;	
@@ -75,7 +75,7 @@ textarea{
 
 fieldset
 {
-  border: 1px solid #5F7718;
+  border: 1px solid #0000B2;
   margin-top: 15px;
   padding: 15px;
   background-color:#FFF;
