@@ -179,33 +179,34 @@ a:hover.vmenu {text-decoration:underline;font-weight:bold;color:#345827;}
 	text-align:center;
 	font-size:10px;
 	font-weight:bold;
-	color:#ffffff;
+	color:#6666;
 	padding-top:30px;
-	padding-bottom:10px;	
+	padding-bottom:10px;
+	margin-left:50px;
+
 }
 
 .tabla_pie{}
 .pie_izq{
-	width:20px;
+	width:100px;
 	height:129px;
-	background:url(../img/pie_izq.png);
-	
-	background-position:right;
-	background-repeat:no-repeat;
-	
+		
 	}
 
 .pie_centro{
-	background:url(../img/pie_centro.png);
-	background-repeat:repeat-x;
+			  border: 1px solid #CCC;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+	border-radius: 7px;	
 	}
 
 .pie_der{
-	width:27px;
+	width:100px;
 	height:129px;
-	background:url(../img/pie_der.png);
-	background-position:left;
-	background-repeat:no-repeat;
 	
 	}
 
@@ -358,12 +359,23 @@ a:hover.vmenu {text-decoration:underline;font-weight:bold;color:#345827;}
 }
 
 .tabla_principal{
-	 border: 2px solid #0000B2;
+	
 	 margin-top: 15px;
 	 padding: 0px;	
 	 /*background:url('../img/esquinaDer.png') left bottom no-repeat,
 	 url('../img/esquinaInf.png') right bottom no-repeat;*/
 	  background-color:#FFF;
+	  overflow: hidden;
+	  border: 1px solid #CCC;
+	box-shadow: 0 0 20px rgba(0, 0, 40, 40);
+	-moz-box-shadow: 0 0 20px rgba(0, 0, 40, 40);
+	-webkit-box-shadow: 0 0 20px rgba(0, 0, 40, 40);
+	
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+	border-radius: 7px;
+}
+	  
 }
 
 .menu_principal{
