@@ -19,6 +19,7 @@ $empresa = $CI->hospi_impresion_model -> obtenerEmpresa();
   </tr>
 </table>
 
+
  </td>
   </tr>
 </table>
