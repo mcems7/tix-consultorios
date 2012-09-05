@@ -103,10 +103,7 @@ $centrob = $tama - $menub;
 	}else{												
 	?> 
      <tr>
-    <td width="<?=$menub?>" style="text-align:center; vertical-align:middle; padding:30px; font-size:16px; font-style:italic;">
-    
-   El yagé (Ayahuasca) es considerada como una planta sagrada y maestra, que muestra a los chamanes el camino hacia una nueva forma de conocimiento; se la usa para encontrar soluciones a diversos problemas que enfrenta la tribu, y también para sanar el cuerpo y el alma, el yagé sería considerado como: <br /><strong>"la gran medicina"</strong>
-    </td><td class="bloque_centro" width="<?=$centrob?>">
+  <td class="bloque_centro" width="<?=$centrob?>">
     <?php } ?>
     
 

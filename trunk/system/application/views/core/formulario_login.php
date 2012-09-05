@@ -6,9 +6,9 @@ $attributes = array('id'       => 'formulario',
 					'method'   => 'post');
 echo form_open('/core/login/entrar',$attributes);
 ?>
-<h1 class="tituloppal">SISTEMA DE GESTI&Oacute;N HOSPITALARIA</h1>
+
 <center>
-<table width="70%" class="tabla_form">
+<table width="50%" class="tabla_form">
 <tr><th colspan="2">Inicio de sesi&oacute;n</th></tr>
   <tr>
     <td class="campo">Nombre de usuario:</td>
