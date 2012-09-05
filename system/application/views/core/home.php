@@ -1,10 +1,4 @@
 <br />
-<table width="100%" border="0" cellspacing="2" cellpadding="2">
-  <tr>
-    <td width="50%" style="text-align:center"><img src="<?=base_url()?>/resources/images/LOGO HOSPITAL.png" width="300" height="99" /></td>
-     <td width="50%"><h1 class="tituloppal">YAGÉ - SISTEMA DE GESTIÓN HOSPITALARIA</h1></td>
-  </tr>
-</table>
 <center>
 <table width="98%" class="tabla_form">
 <tr><th>INFORMACIÓN IMPORTANTE - NOVEDADES</th></tr>
