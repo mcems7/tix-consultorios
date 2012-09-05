@@ -6,16 +6,13 @@ body
 	background-attachment: scroll;
 	background-position: top left;
 	background: #F3F3F3;
-	
+	background: url("../img/bg-body.png") repeat-x scroll left top #00305F;
   font-family: Verdana, Geneva, sans-serif;
   font-size: 12px;
   font-style: normal;
   font-weight: normal;
   
-	
-  
-  
-  
+
   
 }
 

@@ -367,9 +367,9 @@ a:hover.vmenu {text-decoration:underline;font-weight:bold;color:#345827;}
 	  background-color:#FFF;
 	  overflow: hidden;
 	  border: 1px solid #CCC;
-	box-shadow: 0 0 20px rgba(0, 0, 40, 40);
-	-moz-box-shadow: 0 0 20px rgba(0, 0, 40, 40);
-	-webkit-box-shadow: 0 0 20px rgba(0, 0, 40, 40);
+	box-shadow: 0 0 20px rgba(0, 0, 0, 1);
+	-moz-box-shadow: 0 0 20px rgba(0, 0, 0, 1);
+	-webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 1);
 	
 	-moz-border-radius: 7px;
 	-webkit-border-radius: 7px;
