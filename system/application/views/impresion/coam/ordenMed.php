@@ -1,5 +1,5 @@
-<?php $this -> load -> view('impresion/hospi/hospi_inicio'); ?>
-<h4>Consulta ambulatoria - Orden de medicamentos</h4>
+<?php $this -> load -> view('impresion/coam/inicio'); ?>
+<h4>Orden de medicamentos</h4>
 <table id="interna">
   <tr>
     <td class="negrita">Apellidos:</td>
@@ -37,7 +37,17 @@
 </table>
 <h5>Medicamentos</h5>
 <table id="interna">
+  <tr>
+  <td class="negrita centrado">No.</td>
+    <td class="negrita centrado">Medicamento</td>
+    <td class="negrita centrado">Dosis</td>
+    <td class="negrita centrado">Unidad</td>
+    <td class="negrita centrado">Frecuencia</td>
+    <td class="negrita centrado">V&iacute;a</td>
+    <td class="negrita centrado">Observaciones:</td>
+  </tr>
 <?php
+$i=1;
 	foreach($ordenMedi as $d)
 	{
 		$d['via'] = $this->urgencias_model->obtenerValorVarMedi($d['id_via']);
@@ -45,26 +55,25 @@
 		$d['unidad'] = $this->urgencias_model->obtenerValorVarMedi($d['id_unidad']);
 		$d['medicamento'] = $this->urgencias_model->obtenerNomMedicamento($d['atc']);
 ?>
+
   <tr>
-    <td class="negrita centrado">Medicamento</td>
-    <td class="negrita centrado">Dosis</td>
-    <td class="negrita centrado">Unidad</td>
-    <td class="negrita centrado">Frecuencia</td>
-    <td class="negrita centrado">V&iacute;a</td>
-  </tr>
-  <tr>
-    <td class="centrado"><?=$d['medicamento']?></td>
+   <td class="centrado"><?=$i?></td>
+    <td class="negrita"><?=$d['medicamento']?></td>
     <td class="centrado"><?=$d['dosis']?></td>
     <td class="centrado"><?=$d['unidad']?></td>
     <td class="centrado"><?="Cada ".$d['frecuencia']." ".$d['uni_frecuencia']?></td>
     <td class="centrado"><?=$d['via']?></td>
-  </tr>
-  <tr>
-    <td class="negrita">Observaciones:</td>
-    <td class="centrado" colspan="4"><?=$d['observacionesMed']?></td>
+     <td class="centrado"><?=$d['observacionesMed']?></td>
   </tr>
 <?php
+
+$i++;
 	}
 ?>
 </table>
+<?=br(4)?>
+<div id="firma">
+<?=$medico['primer_nombre']." ".$medico['segundo_nombre']." ".$medico['primer_apellido']." ".$medico['segundo_apellido']?><br />
+R.M:<?=nbs().$medico['tarjeta_profesional']?>
+</div>
 <?php $this -> load -> view('impresion/hospi/hospi_fin'); ?>

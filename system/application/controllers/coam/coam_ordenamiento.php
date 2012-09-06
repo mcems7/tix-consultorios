@@ -139,7 +139,7 @@ function crearOrden_()
 		redirect('coam/coam_ordenamiento/formatoNoPos/'.$r['id_orden']);		
 	}else{
 		$dt['mensaje']  = "La orden médica ha sido almacenado correctamente!!";
-		$dt['urlRegresar'] 	= site_url("coam/coam_ordenamiento/main/".$d['id_atencion']);
+		$dt['urlRegresar'] 	= site_url("coam/coam_ordenamiento/consultarOrden/".$r['id_orden']);
 		$this->load->view('core/presentacionMensaje', $dt);
 		return;
 	}

@@ -46,3 +46,9 @@ font-size:14px;
 .texto{
 	text-align:justify;
 }
+#firma{
+  border-top:2px #000 solid;
+  font-size:12px;
+  font-weight:bold;
+  width:200px;
+}
