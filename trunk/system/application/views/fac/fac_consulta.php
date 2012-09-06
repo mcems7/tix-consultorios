@@ -193,59 +193,10 @@ $facturaunidad =$facturaunidad+$d['valor_unidad'];
 $facturatotal =$facturatotal+$d['valor_total'];
 }
 	}	
-
+?>
 
 	
-if ($facCupsLaboratorios !=0)
-{	
-	$total=0;
-foreach($facCupsLaboratorios as $d)
-	{
-				$d['procedimiento'] = $this->urgencias_model->obtenerNomCubs($d['cups']);
-	//	$valorventa = $this->factura_model->obtenerValor($d['cups']);
-		
-		
-		?>
-    <tr>
 
-<td><?=$d['procedimiento'];?></td>
-<td><?=$d['cantidad'];?></td>
-<td><?=$d['valor_unidad'];?></td>
-<td><?=$d['valor_total'];?></td>
-
-</tr>
-<?php
-$facturaunidad =$facturaunidad+$d['valor_unidad'];
-$facturatotal =$facturatotal+$d['valor_total'];
-}
-	}
-
-if ($facCupsImagenes != 0 )
-{
-foreach($facCupsImagenes as $d)
-	{
-				$d['procedimiento'] = $this->urgencias_model->obtenerNomCubs($d['cups']);
-					//$valorventa = $this->factura_model->obtenerValor($d['cups']);
-		
-		
-		
-		?>
-    <tr>
-
-	<td><?=$d['procedimiento'];?></td>
-<td><?=$d['cantidad'];?></td>
-<td><?=$d['valor_unidad'];?></td>
-<td><?=$d['valor_total'];?></td>
-
-</tr>
-
-<?php
-$facturaunidad =$facturaunidad+$d['valor_unidad'];
-$facturatotal =$facturatotal+$d['valor_total'];
-}
-	}
-
-?>
 </table> 
   </div>
   </td></tr>
