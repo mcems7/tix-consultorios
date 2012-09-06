@@ -76,8 +76,9 @@ $centrob = $tama - $menub;
 ?>
 <table width="<?=$tama?>" class="tabla_principal" cellpadding="0" cellspacing="0">
   <tr>
-    <td colspan="2" align="right">
-    <img  src="<?=base_url()?>resources/img/cabezotegrande.jpg"/>
+    <td colspan="2" align="right" >
+    <img  src="<?=base_url()?>resources/img/cabezotegrande.png"/>
+    &nbsp;
     </td>
   </tr>
    <?php
