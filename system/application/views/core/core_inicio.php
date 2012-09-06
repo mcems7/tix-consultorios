@@ -59,7 +59,7 @@ window.open(pagina,"Mi_ventana",opciones);
 	<SCRIPT type="text/javascript" src="<?=base_url()?>resources/js/calendar/dhtmlgoodies_calendar/dhtmlgoodies_calendar.js"></script>
 <!--Fin Calendario-->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>YAG&Eacute; - Sistema de gesti&oacute;n hospitalaria</title>
+<title>TIX Consultorios</title>
 </head>
 
 <body>

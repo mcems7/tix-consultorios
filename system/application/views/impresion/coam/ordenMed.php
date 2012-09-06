@@ -71,9 +71,4 @@ $i++;
 	}
 ?>
 </table>
-<?=br(4)?>
-<div id="firma">
-<?=$medico['primer_nombre']." ".$medico['segundo_nombre']." ".$medico['primer_apellido']." ".$medico['segundo_apellido']?><br />
-R.M:<?=nbs().$medico['tarjeta_profesional']?>
-</div>
-<?php $this -> load -> view('impresion/hospi/hospi_fin'); ?>
+<?php $this -> load -> view('impresion/coam/fin'); ?>
