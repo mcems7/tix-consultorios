@@ -511,17 +511,17 @@ a:hover.vmenu {text-decoration:underline;font-weight:bold;color:#345827;}
 {
 	position:relative;
 	z-index:0;
-	height: 30px;
-	padding: 0 8px;
+	height: 20px;
+	padding: 0 3px;
 	margin-bottom: 0px;
 }
 
 .art-BlockHeader .t
 {
-	height: 30px;
-	color: #FFFFFF;
+	height: 20px;
+	color: #000040;
 	font-family: "Trebuchet MS", Arial, Helvetica, Sans-Serif;
-	font-size: 13px;
+	font-size: 14px;
 	font-style: normal;
 	font-weight: bold;
 	white-space : nowrap;
@@ -534,8 +534,13 @@ a:hover.vmenu {text-decoration:underline;font-weight:bold;color:#345827;}
 	display:block;
 	position:absolute;
 	z-index:-1;
-	height: 30px;
-	background-image: url('../img/BlockHeader.png');
+	height: 25px;
+	border-top-color:#003;
+	border-top-style:solid;
+	border-top-width:3px;
+	border-bottom-color:#003;
+	border-bottom-style:solid;
+	border-bottom-width:3px;
 }
 
 .art-BlockHeader .l
@@ -584,20 +589,20 @@ a:hover.vmenu {text-decoration:underline;font-weight:bold;color:#345827;}
 
 .art-BlockContent-body a:link
 {
-	color: #708D1C;
+color: #000040;
 	font-family: Verdana, Geneva, Arial, Helvetica, Sans-Serif;
 	text-decoration:none;
 }
 
 .art-BlockContent-body a:visited, .art-BlockContent-body a.visited
 {
-	color: #708D1C;
+	color: #000040;
 	font-family: Verdana, Geneva, Arial, Helvetica, Sans-Serif;
 }
 
 .art-BlockContent-body a:hover, .art-BlockContent-body a.hover
 {
-	color:#345827 ;
+	color: #000040;
 	font-family: Verdana, Geneva, Arial, Helvetica, Sans-Serif;
 	text-decoration:underline;
 }
@@ -605,7 +610,7 @@ a:hover.vmenu {text-decoration:underline;font-weight:bold;color:#345827;}
 .art-BlockContent-body ul
 {
 	list-style-type: none;
-	color: #52554A;
+	color: #000040;
 	margin:0;
 	padding:0;
 }
