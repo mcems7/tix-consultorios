@@ -13,6 +13,6 @@ history.back(1);
 </script>
 </head>
 
-<body style="background-color:#81A11F">
+<body style="background-color: #06C">
 </body>
 </html>
