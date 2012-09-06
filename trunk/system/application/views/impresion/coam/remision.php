@@ -1,5 +1,5 @@
-<?php $this -> load -> view('impresion/hospi/hospi_inicio'); ?>
-<h4>Consulta ambulatoria - Remisión</h4>
+<?php $this -> load -> view('impresion/coam/inicio'); ?>
+<h4>Remisión</h4>
 <h5>Datos del paciente</h5>
 <table id="interna">
   <tr>
@@ -76,4 +76,4 @@ echo 'No hay diagn&oacute;sticos asociados a la consulta';
 <td><?=$remision['observacion']?></td>
 </tr>
 </table>
-<?php $this -> load -> view('impresion/hospi/hospi_fin'); ?>
+<?php $this -> load -> view('impresion/coam/fin'); ?>

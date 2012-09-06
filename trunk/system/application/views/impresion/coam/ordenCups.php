@@ -1,5 +1,5 @@
-<?php $this -> load -> view('impresion/hospi/hospi_inicio'); ?>
-<h4>Consulta ambulatoria - Orden de medicamentos</h4>
+<?php $this -> load -> view('impresion/coam/inicio'); ?>
+<h4>Orden de ayudas diagnosticas</h4>
 <table id="interna">
   <tr>
     <td class="negrita">Apellidos:</td>
@@ -56,4 +56,4 @@
 	}
 ?>
 </table>
-<?php $this -> load -> view('impresion/hospi/hospi_fin'); ?>
+<?php $this -> load -> view('impresion/coam/fin'); ?>
