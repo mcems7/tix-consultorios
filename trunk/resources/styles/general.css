@@ -366,7 +366,7 @@ a:hover.vmenu {text-decoration:underline;font-weight:bold;color:#345827;}
 	 url('../img/esquinaInf.png') right bottom no-repeat;*/
 	  background-color:#FFF;
 	  overflow: hidden;
-	  border: 1px solid #CCC;
+	  border: 5px solid #CCC;
 	box-shadow: 0 0 20px rgba(0, 0, 0, 1);
 	-moz-box-shadow: 0 0 20px rgba(0, 0, 0, 1);
 	-webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 1);
@@ -378,6 +378,9 @@ a:hover.vmenu {text-decoration:underline;font-weight:bold;color:#345827;}
 	  
 }
 
+.head td {
+	margin-bottom:30px;
+	}
 .menu_principal{
 	padding-top:20px;
 	vertical-align:top;
