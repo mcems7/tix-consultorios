@@ -1,5 +1,5 @@
-<?php $this -> load -> view('impresion/hospi/hospi_inicio'); ?>
-<h4>Consulta ambulatoria - Historia cl&iacute;nica</h4>
+<?php $this -> load -> view('impresion/coam/inicio'); ?>
+<h4>Historia cl&iacute;nica</h4>
 <table id="interna">
   <tr>
     <td class="negrita">Apellidos:</td>
@@ -142,4 +142,4 @@
 <tr><td class="texto"><strong>Conducta:</strong>
 <?=$consulta['conducta']?></td></tr>
 </table>
-<?php $this -> load -> view('impresion/hospi/hospi_fin'); ?>
+<?php $this -> load -> view('impresion/coam/fin'); ?>
