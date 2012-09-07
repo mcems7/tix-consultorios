@@ -1,6 +1,5 @@
 <?php $this -> load -> view('impresion/coam/inicio'); ?>
 <h4>Remisión</h4>
-<h5>Datos del paciente</h5>
 <table id="interna">
   <tr>
     <td class="negrita">Apellidos:</td>
@@ -37,6 +36,14 @@
 <td class="negrita">Enfermedad actual:</td>
 <td colspan="3"><?=$consulta['enfermedad_actual']?>&nbsp;</td>
 </tr>
+<tr>
+<td class="negrita">Análisis:</td>
+<td colspan="3"><?=$consulta['analisis']?>&nbsp;</td>
+</tr>
+<tr>
+<td class="negrita">Conducta:</td>
+<td colspan="3"><?=$consulta['conducta']?>&nbsp;</td>
+</tr>
    <tr>
   <td class="negrita">Diagn&oacute;sticos consulta:</td>
   <td colspan="3">
@@ -47,7 +54,7 @@ if(count($dxCon) > 0)
 	foreach($dxCon as $d)
 	{
 
-		echo '<li><strong>'.$d['id_diag'].'</strong> '.$d['diagnostico'] ,'</li>';
+		echo nbs(),'<strong>'.$d['id_diag'].'</strong>',nbs();
 
 	}
 }else{

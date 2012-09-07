@@ -38,21 +38,25 @@
 <h5>Procedimientos y ayudas diagn&oacute;sticas</h5>
 <table id="interna">
   <tr>
-    <td class="negrita centrado" style="width:30%">Procedimiento:</td>
-    <td class="negrita centrado" style="width:30%">Cantidad:</td>
-    <td class="negrita centrado" style="width:40%">Observaciones:</td>
+      <td class="negrita centrado">N0</td>
+    <td class="negrita centrado">Procedimiento</td>
+    <td class="negrita centrado">Cantidad</td>
+    <td class="negrita centrado">Observaciones</td>
   </tr>
 <?php
+$i=1;
 	foreach($ordenCups as $d)
 	{
 		$d['procedimiento'] = $this->urgencias_model->obtenerNomCubs($d['cups']);
 ?>
   <tr>
-    <td class="centrado"><?=$d['procedimiento']?></td>
+    <td class="centrado"><?=$i?></td>
+    <td class="negrita"><?=$d['procedimiento']?></td>
     <td class="centrado"><?=$d['cantidadCups']?></td>
     <td class="centrado"><?=$d['observacionesCups']?></td>
   </tr>
 <?php
+$i++;
 	}
 ?>
 </table>

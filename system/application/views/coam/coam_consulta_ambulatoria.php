@@ -2,6 +2,31 @@
 <script type="text/javascript">
 slidePaciente = null;
 ////////////////////////////////////////////////////////////////////////////////
+function imc()
+{
+	var talla = $('talla').value;
+	var peso = $('peso').value;
+	
+	if(talla.length !=0 && peso.length != 0){
+	
+		var var_url = '<?=site_url()?>/coam/coam_gestion_atencion/calculo_imc';
+		var ajax1 = new Request(
+		{
+			url: var_url,
+			method: 'post',
+			data:  $('formulario').toQueryString(),
+			onRequest: function (){$('div_precarga').style.display = "block";},
+			onSuccess: function(html){$('div_imc').set('html', html);
+			$('div_precarga').style.display = "none";},
+			onComplete: function(){},
+			evalScripts: true,
+			onFailure: function(){alert('Error ejecutando ajax!');
+			$('div_precarga').style.display = "none";}
+		});
+		ajax1.send();	
+	}
+}
+////////////////////////////////////////////////////////////////////////////////
 function validarFormulario()
 {
 	var contDx = $('contDx').value;
@@ -247,7 +272,7 @@ echo form_textarea(array('name' => 'ant_ginecologicos',
 <tr><td class="campo">Talla:</td>
 <td><?=form_input(array('name' => 'talla',
 							'id'=> 'talla',
-							'onChange' => "vNum('talla','10','250')",
+							'onChange' => "vNum('talla','10','250'); imc();",
 							'maxlength' => '5',
 							'size'=> '5',
 							))?>&nbsp;Centímetros</td></tr>
@@ -257,7 +282,7 @@ echo form_textarea(array('name' => 'ant_ginecologicos',
 ?>
 <td><?=form_input(array('name' => 'peso',
 							'id'=> 'peso',
-							'onChange' => "vNum('peso','1','160')",
+							'onChange' => "vNum('peso','1','160'); imc();",
 							'maxlength' => '5',
 							'class'=>"fValidate['required']",
 							'size'=> '5',
@@ -267,7 +292,7 @@ echo form_textarea(array('name' => 'ant_ginecologicos',
 ?>
 <td><?=form_input(array('name' => 'peso',
 							'id'=> 'peso',
-							'onChange' => "vNum('peso','1','160')",
+							'onChange' => "vNum('peso','1','160'); imc();",
 							'maxlength' => '5',
 							'size'=> '5',
 							))?> &nbsp;Kilogramos </td>
@@ -275,6 +300,8 @@ echo form_textarea(array('name' => 'ant_ginecologicos',
 }
 ?>							
 </tr>
+<tr><td class="campo">Índice de masa corporal:</td>
+<td id="div_imc">No calculado</td></tr>
 <tr><td colspan="2" class="linea_azul"></td></tr>   
 <tr>
 <td colspan="2" class="campo">
