@@ -38,7 +38,7 @@ public function remision($id_remision)
 	$d['atencion'] = $this->coam_model->obtenerAtencion($d['remision']['id_atencion']);
 	$d['paciente'] = $this->paciente_model->obtenerPacienteConsulta($d['atencion']['id_paciente']);
 	$d['tercero'] = $this->paciente_model->obtenerTercero($d['paciente']['id_tercero']);
-	$d['entidad'] = $this->urgencias_model->obtenerEntidad($d['paciente']['id_entidad']);
+	$d['entidad'] = $this->urgencias_model->obtenerEntidad($d['atencion']['id_entidad']);
 	$d['tipo_usuario']	= $this->paciente_model->tipos_usuario();
 	$d['consulta'] = $this->coam_model->obtenerNotaInicial($d['remision']['id_atencion']);
 	$d['dxCon'] = $this->coam_model->obtenerDxConsulta($d['consulta']['id_consulta']);
@@ -58,7 +58,7 @@ public function incapacidad($id_incapacidad)
 	$d['atencion'] = $this->coam_model->obtenerAtencion($d['inca']['id_atencion']);
 	$d['paciente'] = $this->paciente_model->obtenerPacienteConsulta($d['atencion']['id_paciente']);
 	$d['tercero'] = $this->paciente_model->obtenerTercero($d['paciente']['id_tercero']);
-	$d['entidad'] = $this->urgencias_model->obtenerEntidad($d['paciente']['id_entidad']);
+	$d['entidad'] = $this->urgencias_model->obtenerEntidad($d['atencion']['id_entidad']);
 	$d['tipo_usuario']	= $this->paciente_model->tipos_usuario();
 	$d['consulta'] = $this->coam_model->obtenerNotaInicial($d['inca']['id_atencion']);
 	$d['dxCon'] = $this->coam_model->obtenerDxConsulta($d['consulta']['id_consulta']);
@@ -82,7 +82,7 @@ public function consultaInicial($id_atencion)
 	$d['tipo_usuario'] = $this->paciente_model->tipos_usuario();
 	$d['dx'] = $this->coam_model->obtenerDxConsulta($d['consulta']['id_consulta']);
 	$d['medico'] = $this->urgencias_model->obtenerMedico($d['consulta']['id_medico']);
-	$d['entidad'] = $this->urgencias_model->obtenerEntidad($d['paciente']['id_entidad']);
+	$d['entidad'] = $this->urgencias_model->obtenerEntidad($d['atencion']['id_entidad']);
 	$d['origen'] = $this->urgencias_model->obtenerOrigenesAtencion();
 	$d['empresa'] = $this -> hospi_impresion_model -> obtenerEmpresa();
 	//-----------------------------------------------------------
@@ -101,6 +101,7 @@ public function ordenMed($id_orden)
 	$d['atencion'] = $this->coam_model->obtenerAtencion($id_atencion);
 	$d['paciente'] = $this->paciente_model->obtenerPacienteConsulta($d['atencion']['id_paciente']);
 	$d['tercero'] = $this->paciente_model->obtenerTercero($d['paciente']['id_tercero']);
+	$d['entidad'] = $this->urgencias_model->obtenerEntidad($d['atencion']['id_entidad']);
 	$d['medico'] = $this->urgencias_model->obtenerMedico($d['orden']['id_medico']);
 	$d['empresa'] = $this -> hospi_impresion_model -> obtenerEmpresa();
 	//-----------------------------------------------------------
@@ -121,6 +122,7 @@ public function ordenCups($id_orden)
 	$d['tercero'] = $this->paciente_model->obtenerTercero($d['paciente']['id_tercero']);
 	$d['medico'] = $this->urgencias_model->obtenerMedico($d['orden']['id_medico']);
 	$d['empresa'] = $this -> hospi_impresion_model -> obtenerEmpresa();
+	$d['entidad'] = $this->urgencias_model->obtenerEntidad($d['atencion']['id_entidad']);
 	//-----------------------------------------------------------
 	$this->load->view('impresion/coam/ordenCups',$d);
 	//----------------------------------------------------------
