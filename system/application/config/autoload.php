@@ -39,7 +39,7 @@
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('lib_edad','lib_tiempo');
+$autoload['libraries'] = array('lib_edad','lib_tiempo','lib_ope');
 
 
 /*
