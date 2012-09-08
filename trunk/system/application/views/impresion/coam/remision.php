@@ -1,24 +1,18 @@
 <?php $this -> load -> view('impresion/coam/inicio'); ?>
 <h4>Remisión</h4>
 <table id="interna">
-  <tr>
-    <td class="negrita">Apellidos:</td>
-    <td class="centrado"><?=$tercero['primer_apellido'].' '.$tercero['segundo_apellido']?></td>
-    <td class="negrita">Nombres:</td>
-    <td class="centrado"><?=$tercero['primer_nombre'].' '.$tercero['segundo_nombre']?></td>
-  </tr>
-  <tr>
-    <td class="negrita">Documento de identidad:</td>
-    <td class="centrado"><?=$tercero['tipo_documento'].' '.$tercero['numero_documento']?></td>
-    <td class="negrita">G&eacute;nero:</td>
-    <td class="centrado"><?=$paciente['genero']?></td>
-  </tr>
-  <tr>
-    <td class="negrita">Fecha de nacimiento:</td>
-    <td class="centrado"><?=$tercero['fecha_nacimiento']?></td>
-    <td class="negrita">Edad:</td>
-    <td class="centrado"><?=$this->lib_edad->edad($tercero['fecha_nacimiento'])?></td>
-  </tr>
+<tr>
+	<td class="negrita">Nombres y apellidos:</td>
+	<td><?=$tercero['primer_nombre'].' '.$tercero['segundo_nombre']." ".$tercero['primer_apellido'].' '.$tercero['segundo_apellido']?></td>
+	<td class="negrita">Documento de identidad:</td>
+	<td><?=$tercero['tipo_documento'].' '.$tercero['numero_documento']?></td>
+</tr>
+<tr>
+	<td class="negrita">Entidad:</td>
+	<td><?=$entidad['razon_social']?></td>
+	<td class="negrita">Edad:</td>
+	<td><?=$this->lib_edad->edad($tercero['fecha_nacimiento'])?></td>
+</tr>
 </table>
 <h5>Datos de la consulta</h5>
 <table id="interna">
@@ -54,7 +48,7 @@ if(count($dxCon) > 0)
 	foreach($dxCon as $d)
 	{
 
-		echo nbs(),'<strong>'.$d['id_diag'].'</strong>',nbs();
+		echo '<li><strong>'.$d['id_diag'].'</strong> '.$d['diagnostico'] ,'</li>';
 
 	}
 }else{
