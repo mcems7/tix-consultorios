@@ -1,24 +1,18 @@
 <?php $this -> load -> view('impresion/coam/inicio'); ?>
 <h4>Historia cl&iacute;nica</h4>
 <table id="interna">
-  <tr>
-    <td class="negrita">Apellidos:</td>
-    <td class="centrado"><?=$tercero['primer_apellido'].' '.$tercero['segundo_apellido']?></td>
-    <td class="negrita">Nombres:</td>
-    <td class="centrado"><?=$tercero['primer_nombre'].' '.$tercero['segundo_nombre']?></td>
-  </tr>
-  <tr>
-    <td class="negrita">Documento de identidad:</td>
-    <td class="centrado"><?=$tercero['tipo_documento'].' '.$tercero['numero_documento']?></td>
-    <td class="negrita">G&eacute;nero:</td>
-    <td class="centrado"><?=$paciente['genero']?></td>
-  </tr>
-  <tr>
-    <td class="negrita">Fecha de nacimiento:</td>
-    <td class="centrado"><?=$tercero['fecha_nacimiento']?></td>
-    <td class="negrita">Edad:</td>
-    <td class="centrado"><?=$this->lib_edad->edad($tercero['fecha_nacimiento'])?></td>
-  </tr>
+    <tr>
+        <td class="negrita">Nombres y apellidos:</td>
+        <td><?=$tercero['primer_nombre'].' '.$tercero['segundo_nombre']." ".$tercero['primer_apellido'].' '.$tercero['segundo_apellido']?></td>
+        <td class="negrita">Documento de identidad:</td>
+        <td><?=$tercero['tipo_documento'].' '.$tercero['numero_documento']?></td>
+    </tr>
+    <tr>
+        <td class="negrita">Entidad:</td>
+        <td><?=$entidad['razon_social']?></td>
+        <td class="negrita">Edad:</td>
+        <td><?=$this->lib_edad->edad($tercero['fecha_nacimiento'])?></td>
+    </tr>
 </table>
 <?=br()?>
 <table id="interna">
@@ -63,10 +57,16 @@
 <table id="interna">
 <tr><td class="texto" colspan="6"><strong>Condiciones generales:</strong>
 <?=$consulta['condiciones_generales']?></td></tr>
-<tr><td class="texto"><strong>Peso:</strong></td>
+<tr><td class="negrita">Peso:</td>
 <td><?=$consulta['peso']?></td>
-<td class="texto"><strong>Talla:</strong></td>
-<td><?=$consulta['talla']?></td></tr>
+<td class="negrita">Talla:</td>
+<td><?=$consulta['talla']?></td>
+<?php
+if(strlen($consulta['peso']) > 0 && strlen($consulta['talla']) > 0){
+	echo "<td>",$this->lib_ope->imc($consulta['talla'],$consulta['peso']),"</td>";
+}
+?>
+</tr>
 <tr>
   <td colspan="6" class="negrita centrado">Signos vitales</td>
 </tr>

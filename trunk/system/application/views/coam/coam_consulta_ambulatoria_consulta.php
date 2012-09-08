@@ -132,6 +132,16 @@ Ocultar la informaci&oacute;n del paciente
 <td><?=$consulta['peso']?></td></tr>
 <tr><td class="campo">Talla:</td>
 <td><?=$consulta['talla']?></td></tr>
+
+<?php
+if(strlen($consulta['peso']) > 0 && strlen($consulta['talla']) > 0){
+?>
+<tr><td class="campo">Índice de masa corporal:</td>
+<td><?=$this->lib_ope->imc($consulta['talla'],$consulta['peso'])?></td></tr>	
+<?php
+}
+?>
+
 <tr><td colspan="2" class="linea_azul"></td></tr>   
 <tr><td colspan="2">
 <table width="100%" border="0" cellspacing="2" cellpadding="2" style="text-align:center" class="tabla_interna">
