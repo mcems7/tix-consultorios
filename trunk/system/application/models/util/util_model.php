@@ -86,6 +86,19 @@ function obtenerDieta($id_dieta)
 	return $cad['dieta'];
 }
 ///////////////////////////////////////////////////////////////////////
+function crearMedicamentoDb($d)
+{
+	$insert = array (
+		'medicamento' => $d['medicamento'],
+		'pos' => $d['pos'],
+		'fecha_creacion' => date('Y-m-d H:i:s'),
+		'id_usuario' => $this -> session -> userdata('id_usuario'));
+	$this->db->insert('coam_medicamentos',$insert);
+	//----------------------------------------------------
+	return $this->db->insert_id();
+	//----------------------------------------------------
+	
+}
 ///////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////

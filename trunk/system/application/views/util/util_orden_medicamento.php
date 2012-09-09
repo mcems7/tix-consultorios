@@ -1,11 +1,11 @@
 <script type="text/javascript" src="<?=base_url()?>resources/js/lista_ajax/ajax.js"></script>
 <script type="text/javascript" src="<?=base_url()?>resources/js/lista_ajax/ajax-dynamic-list.js"></script>
 <table width="100%" cellspacing="0" cellpadding="0">
-<tr><td class="campo" width="20%">Medicamento:</td><td width="80%">
+<tr><td class="campo" width="20%">Medicamento:</td><td>
 <input size="60" type="text" id="atc" name="atc" value="" 
 onkeyup="ajax_showOptions(this,'util/ordenes/medicamentos',event)" AUTOCOMPLETE="off">
 <input type="hidden" id="atc_hidden" name="atc_ID">
-</td></tr>
+</td><td class="opcion"><a href="<?=site_url('util/ordenes/crearMedicamento')?>" rel="lightbox[external 640 360]" title="Crear medicamento">Crear medicamento</a></td></tr>
 </table>
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr>

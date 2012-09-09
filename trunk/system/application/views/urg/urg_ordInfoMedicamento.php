@@ -13,7 +13,6 @@ $marca = md5(mt_rand());
 <tr>
 <td rowspan="2" align="center">
 <?php
-echo form_hidden('bandera[]',$bandera);
 echo form_hidden('atc_[]',$atc);
 echo form_hidden('dosis_[]',$dosis);
 echo form_hidden('id_unidad_[]',$id_unidad);

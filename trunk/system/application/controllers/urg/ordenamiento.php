@@ -286,12 +286,12 @@ function consultarOrden($id_orden)
 	{
 		$l = preg_replace("/[^a-z0-9 ]/si","",$l);
 		$this->load->database();
-		$this->db->like('principio_activo',$l);
-		$r = $this->db->get('core_medicamento');
+		$this->db->like('medicamento',$l);
+		$r = $this->db->get('coam_medicamentos');
 		$dat = $r -> result_array();
 		foreach($dat as $d)
 		{
-			echo $d["atc_full"]."###".$d["principio_activo"]." ".$d["descripcion"]."|";
+			echo $d["id"]."###".$d["medicamento"]."|";
 		}
 	}
 ///////////////////////////////////////////////////////////////////
