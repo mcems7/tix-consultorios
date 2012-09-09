@@ -1072,18 +1072,18 @@ function obtenerDieta($id_dieta)
 		return $row['descripcion'];	
 	}
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
-	function obtenerNomMedicamento($atc)
+	function obtenerNomMedicamento($id)
 	{
-		$this->db->where('atc_full',$atc);
-		$result = $this->db->get('core_medicamento');
+		$this->db->where('id',$id);
+		$result = $this->db->get('coam_medicamentos');
 		$row = $result->row_array();
-		return $row['principio_activo']." ".$row['descripcion'];	
+		return $row['medicamento'];	
 	}
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
-	function obtenerMedicamentoPos($atc)
+	function obtenerMedicamentoPos($id)
 	{
-		$this->db->where('atc_full',$atc);
-		$result = $this->db->get('core_medicamento');
+		$this->db->where('id',$id);
+		$result = $this->db->get('coam_medicamentos');
 		return $result->row_array();
 		
 	}

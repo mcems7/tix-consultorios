@@ -88,7 +88,6 @@ function agregarMedicamento()
 	//---------------------------------------------------------------
 	$d = array();
 	//---------------------------------------------------------------
-	$d['pos'] = $this->input->post('pos');
 	$d['atc'] = $this->input->post('atc_ID');
 	$d['dosis'] = $this->input->post('dosis');
 	$d['id_unidad'] = $this->input->post('id_unidad');
@@ -102,7 +101,6 @@ function agregarMedicamento()
 	$d['medicamento'] = $this->urgencias_model->obtenerNomMedicamento($d['atc']);
 	$pos = $this->urgencias_model->obtenerMedicamentoPos($d['atc']);
 	$d['pos'] = $pos['pos'];
-	$d['bandera'] = 'Nuevo';
 	echo $this->load->view('urg/urg_ordInfoMedicamento',$d);
 }
 ///////////////////////////////////////////////////////////////////
@@ -123,12 +121,12 @@ function medicamentos($l)
 {
 	$l = preg_replace("/[^a-z0-9 ]/si","",$l);
 	$this->load->database();
-	$this->db->like('principio_activo',$l);
-	$r = $this->db->get('core_medicamento');
+	$this->db->like('medicamento',$l);
+	$r = $this->db->get('coam_medicamentos');
 	$dat = $r->result_array();
 	foreach($dat as $d)
 	{
-		echo $d["atc_full"]."###".$d["principio_activo"]." ".$d["descripcion"]."|";
+		echo $d["id"]."###".$d["medicamento"]."|";
 	}
 }
 ///////////////////////////////////////////////////////////////////
@@ -169,7 +167,20 @@ function agregarMedicamentoModi()
 	echo $this->load->view('urg/urg_ordInfoMedicamento',$d);
 }
 ///////////////////////////////////////////////////////////////////
+function crearMedicamento()
+{
+	$this->load->view('util/util_orden_crear_medicamento');
+}
 ///////////////////////////////////////////////////////////////////
+function crearMedicamento_()
+{
+	$d['pos'] = $this->input->post('pos');
+	$d['medicamento'] = $this->input->post('medicamento');
+
+	$id = $this->util_model->crearMedicamentoDb($d);
+	$d['medicamento'] = $this->urgencias_model->obtenerNomMedicamento($id);
+	$this->load->view('util/util_orden_consultar_medicamento_creado',$d);
+}
 ///////////////////////////////////////////////////////////////////
 }
 ?>
