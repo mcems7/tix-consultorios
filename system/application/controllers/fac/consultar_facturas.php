@@ -13,7 +13,7 @@
  *Autor: Diego Ivan Carvajal <dcarvajal@opuslibertati.org>
  *Fecha de creación: 6 de marzo de 2012
 */
-class Factura extends Controller
+class Consultar_facturas extends Controller
 {
 ///////////////////////////////////////////////////////////////////
 	function __construct()
@@ -48,61 +48,12 @@ class Factura extends Controller
 
 		//----------------------------------------------------------
 		$this->load->view('core/core_inicio');
-		$this -> load -> view('fac/fac_buscarDocumento', $d);
+		$this -> load -> view('fac/fac_buscarFacturas', $d);
 		$this->load->view('core/core_fin');
 		//----------------------------------------------------------
 	}
 	
-///////////////////////////////////////////////////////////////////
-/*se cargan los datos a facturar del paciente
-*
-* @author Diego Ivan Carvajal Gil <dcarvajal@opuslibertati.org>
-* @author http://www.opuslibertati.org
-* @copyright	GNU GPL 3.0
-* @since		20120107
-* @version		20120107
-*/
 
-///////////////////////////////////////////////////////////////////
-	function datos_facturar($id_atencion)
-	{
-		//----------------------------------------------------------
-		$d = array();
-		$d['urlRegresar'] 	= site_url('fac/factura/index');
-		$d['atencion'] = $this -> coam_model -> obtenerAtencion($id_atencion);
-		
-		$d['contrato'] = $d['atencion']['id_contrato'];
-		$d['plantilla'] = $this -> factura_model -> obtenerPlantilla($d['contrato']['id_contrato']);
-		
-		//$d['triage'] = $this -> urgencias_model -> obtenerTriage($id_atencion);
-		
-	
-		$d['paciente'] = $this -> paciente_model -> obtenerPacienteConsulta($d['atencion']['id_paciente']);
-		$d['tercero'] = $this -> paciente_model -> obtenerTercero($d['paciente']['id_tercero']);
-		//$d['consulta'] = $this -> urgencias_model -> obtenerConsulta($id_atencion);
-		$d['tipo_usuario']	= $this -> paciente_model -> tipos_usuario();
-		$d['id_medico'] = $this -> urgencias_model -> obtenerIdMedico($this->session->userdata('id_usuario'));
-		$d['medico'] = $this -> urgencias_model -> obtenerMedico($d['id_medico']);
-		$d['entidad'] = $this -> urgencias_model ->obtenerEntidad($d['paciente']['id_entidad']);
-		//$d['mediAtencion'] = $this -> coam_model ->obtenerMediAtencion($id_atencion);
-		//$d['origen'] = $this->urgencias_model->obtenerOrigenAtencion($d['atencion']['id_origen']);
-		$d['especialidades']= $this -> medico_model -> tipos_especialidades();
-		
-		//-----------------------------------------------------------
-  //  $d['ordenDietas'] = $this -> factura_model -> obtenerDietasOrden($id_atencion);
-    $d['ordenMedi'] = $this -> factura_model -> obtenerMediOrden($id_atencion);
-    $d['ordenCups'] = $this -> factura_model -> obtenerCupsOrden($id_atencion);
-	
-	
-		
-		$this->load->view('core/core_inicio');
-		$this -> load -> view('fac/fac_generar',$d);
-		$this->load->view('core/core_fin');
-		//----------------------------------------------------------
-	}	
-	
-	
-	
 	
 	
 	///////////////////////////////////////////////////////////////////
@@ -531,51 +482,32 @@ class Factura extends Controller
 	{
 		//----------------------------------------------------------
 		$d = array();
-		$d['urlRegresar'] 	= site_url('fac/factura/index');
+		$d['urlRegresar'] 	= site_url('fac/consultar_facturas/index');
 		//----------------------------------------------------------
 		$d['numero_documento'] 	= $this->input->post('numero_documento');
 		
-		$verTer = $this -> tercero_model -> verificaTercero($d['numero_documento']);
-
-		if($verTer != 0)
+		$d['facturas_atencion'] = $this -> factura_model -> buscarFacturas($d['numero_documento']);
+		
+		foreach ($d['facturas_atencion'] as $item)
 		{
-			$verPas = $this -> paciente_model -> verificarPaciente($verTer);
-			//Verifica la existencia del tercero como paciente
-			if($verPas != 0)
-			{	
-				$d['paciente'] = $this -> paciente_model -> obtenerPacienteConsulta($verPas);
-				
-				$d['tercero'] = $this -> paciente_model -> obtenerTercero($d['paciente']['id_tercero']);
-				$d['entidad'] = $this -> urgencias_model ->obtenerEntidad($d['paciente']['id_entidad']);
-				$d['atencion'] = $this -> factura_model ->obtenerAtencion($d['paciente']['id_paciente']);
-						
-
-				if ($d['atencion'] !=0)
-				{
-					$this->datos_facturar($d['atencion']['id_atencion']);
-				}else{
-					  	$dt['mensaje']  = "El paciente no se encuentra registrado en el sistema!!";
-						$dt['urlRegresar'] 	= site_url('fac/factura/index');
+			$d['factura'][]= $this -> factura_model -> facturas_contrato($item['id_factura']);
+			
+			}
+		
+		
+		if($d['facturas_atencion'] == null)
+		{
+		
+					  	$dt['mensaje']  = "El documento no tiene factura en el sistema!!";
+						$dt['urlRegresar'] 	= site_url('fac/consultar_facturas/index');
 						$this -> load -> view('core/presentacionMensaje', $dt);
 						return;
 					
 					}
-			//	$this->load->view('core/core_inicio');
-			//	$this->load->view('hosp/hosp_registro_atencion',$d);
-			//	$this->load->view('core/core_fin');
-			}else
-			{
-				$dt['mensaje']  = "El paciente no se encuentra registrado en el sistema!!";
-				$dt['urlRegresar'] 	= site_url('fac/factura/index');
-				$this -> load -> view('core/presentacionMensaje', $dt);
-				return;
-			}
-		}else{
-			$dt['mensaje']  = "El paciente no se encuentra registrado en el sistema!!";
-			$dt['urlRegresar'] 	= site_url('fac/factura/index');
-			$this -> load -> view('core/presentacionMensaje', $dt);
-			return;
-		}	
+			$this->load->view('core/core_inicio');
+			$this->load->view('fac/fac_listado_facturas_paciente',$d);
+			$this->load->view('core/core_fin');
+			
 	}
 ///////////////////////////////////////////////////////////////////
 	

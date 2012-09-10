@@ -146,9 +146,9 @@ a:hover.vmenu {text-decoration:underline;font-weight:bold;color:#345827;}
 
 .tabla_form th{
 	font-size:14px;
-	height:25px;
+	height:30px;
 	color:#FFF;
-	background:url(../img/celda_titulo.png);
+	background:url(../img/fondo_menu.png);
 	background-repeat:repeat-x;
 }
 
