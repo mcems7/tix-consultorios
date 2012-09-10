@@ -33,29 +33,28 @@ class Factura_model extends Model
 	
 		
 		$this->db->where('id_orden',$id_atencion);
-		$result = $this->db->get('hospi_orde_dietas');
+		$result = $this->db->get('coam_orde_dietas');
 		return $result->result_array();	
 	}
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 	function obtenerMediOrden($id_atencion)
 	{
-		$this->db->select('hospi_ordenamiento.id_orden,
-			hospi_ordenamiento.id_atencion,
-			hospi_orde_medicamentos.id,
-			hospi_orde_medicamentos.atc,
-			hospi_orde_medicamentos.dosis,
-			hospi_orde_medicamentos.id_unidad,
-			hospi_orde_medicamentos.pos,
-			hospi_orde_medicamentos.cantidadMed,
-			hospi_orde_medicamentos.estado,
-			hospi_orde_medicamentos.id_via,
-			hospi_orde_medicamentos.id_frecuencia
+		$this->db->select('coam_ordenamiento.id_orden,
+			coam_ordenamiento.id_atencion,
+			coam_orde_medicamentos.id,
+			coam_orde_medicamentos.atc,
+			coam_orde_medicamentos.dosis,
+			coam_orde_medicamentos.id_unidad,
+			coam_orde_medicamentos.pos,
+			
+			coam_orde_medicamentos.id_via,
+			coam_orde_medicamentos.id_frecuencia
 			
 			
 		  ');
-		$this->db->from('hospi_ordenamiento');  
-		 $this->db->join('hospi_orde_medicamentos','hospi_ordenamiento.id_orden = hospi_orde_medicamentos.id_orden ');
+		$this->db->from('coam_ordenamiento');  
+		 $this->db->join('coam_orde_medicamentos','coam_ordenamiento.id_orden = coam_orde_medicamentos.id_orden ');
 		
 		$this->db->where('id_atencion',$id_atencion);
 	  $result = $this->db->get();
@@ -72,14 +71,14 @@ class Factura_model extends Model
 	function obtenerCupsOrden($id_atencion)
 	{
 		
-			$this->db->select('hospi_ordenamiento.id_orden,
-			hospi_ordenamiento.id_atencion,
-			hospi_orde_cups.cantidadCups,
-			hospi_orde_cups.cups,
-			hospi_orde_cups.id,
+			$this->db->select('coam_ordenamiento.id_orden,
+			coam_ordenamiento.id_atencion,
+			coam_orde_cups.cantidadCups,
+			coam_orde_cups.cups,
+			coam_orde_cups.id,
 		  ');
-		$this->db->from('hospi_ordenamiento');  
-		 $this->db->join('hospi_orde_cups','hospi_ordenamiento.id_orden = hospi_orde_cups.id_orden ');
+		$this->db->from('coam_ordenamiento');  
+		 $this->db->join('coam_orde_cups','coam_ordenamiento.id_orden = coam_orde_cups.id_orden ');
 		
 		$this->db->where('id_atencion',$id_atencion);
 	  $result = $this->db->get();
@@ -93,14 +92,14 @@ class Factura_model extends Model
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 function obtenerCupsLaboratorios($id_atencion)
 	{
-	$this->db->select('hospi_ordenamiento.id_orden,
-			hospi_ordenamiento.id_atencion,
-			hospi_orde_laboratorios.cantidadCups,
-			hospi_orde_laboratorios.cups,
-			hospi_orde_laboratorios.id,
+	$this->db->select('coam_ordenamiento.id_orden,
+			coam_ordenamiento.id_atencion,
+			coam_orde_laboratorios.cantidadCups,
+			coam_orde_laboratorios.cups,
+			coam_orde_laboratorios.id,
 		  ');
-		$this->db->from('hospi_ordenamiento');  
-		 $this->db->join('hospi_orde_laboratorios','hospi_ordenamiento.id_orden = hospi_orde_laboratorios.id_orden ');
+		$this->db->from('coam_ordenamiento');  
+		 $this->db->join('coam_orde_laboratorios','coam_ordenamiento.id_orden = coam_orde_laboratorios.id_orden ');
 		
 		$this->db->where('id_atencion',$id_atencion);
 	  $result = $this->db->get();
@@ -116,14 +115,14 @@ function obtenerCupsLaboratorios($id_atencion)
 function obtenerCupsImagenes($id_atencion)
 	{
 	
-			$this->db->select('hospi_ordenamiento.id_orden,
-			hospi_ordenamiento.id_atencion,
-			hospi_orde_imagenes.cantidadCups,
-			hospi_orde_imagenes.cups,
-			hospi_orde_imagenes.id,
+			$this->db->select('coam_ordenamiento.id_orden,
+			coam_ordenamiento.id_atencion,
+			coam_orde_imagenes.cantidadCups,
+			coam_orde_imagenes.cups,
+			coam_orde_imagenes.id,
 		  ');
-		$this->db->from('hospi_ordenamiento');  
-		 $this->db->join('hospi_orde_imagenes','hospi_ordenamiento.id_orden = hospi_orde_imagenes.id_orden ');
+		$this->db->from('coam_ordenamiento');  
+		 $this->db->join('coam_orde_imagenes','coam_ordenamiento.id_orden = coam_orde_imagenes.id_orden ');
 		
 		$this->db->where('id_atencion',$id_atencion);
 	  $result = $this->db->get();
@@ -138,20 +137,20 @@ function obtenerCupsImagenes($id_atencion)
 function obtenerOrdenInsumos($id_atencion)
   {
     $this->db->select(' 
-  hospi_orde_insumos_detalle.id_insumo,
+  coam_orde_insumos_detalle.id_insumo,
   core_insumos.insumo,
   core_insumos.codigo_interno,
-  hospi_ordenamiento.id_atencion,
-  hospi_orde_insumos.id_orden_insumos,
-  hospi_orde_insumos_detalle.cantidad,
+  coam_ordenamiento.id_atencion,
+  coam_orde_insumos.id_orden_insumos,
+  coam_orde_insumos_detalle.cantidad,
   
-  hospi_orde_insumos_detalle.observaciones');
+  coam_orde_insumos_detalle.observaciones');
   $this->db->from('core_insumos');
-  $this->db->join('hospi_orde_insumos_detalle','core_insumos.id_insumo = hospi_orde_insumos_detalle.id_insumo');
-  $this->db->join('hospi_orde_insumos','hospi_orde_insumos.id_orden_insumos = hospi_orde_insumos_detalle.id_orden_insumos');
-  $this->db->join('hospi_ordenamiento','hospi_ordenamiento.id_orden = hospi_orde_insumos.id_orden');
+  $this->db->join('coam_orde_insumos_detalle','core_insumos.id_insumo = coam_orde_insumos_detalle.id_insumo');
+  $this->db->join('coam_orde_insumos','coam_orde_insumos.id_orden_insumos = coam_orde_insumos_detalle.id_orden_insumos');
+  $this->db->join('coam_ordenamiento','coam_ordenamiento.id_orden = coam_orde_insumos.id_orden');
   
-  $this->db->where('hospi_ordenamiento.id_atencion',$id_atencion);
+  $this->db->where('coam_ordenamiento.id_atencion',$id_atencion);
    $result = $this->db->get();
 		$numordenamiento = $result -> num_rows();
 		if($numordenamiento == 0){
@@ -173,10 +172,6 @@ function obtenerOrdenInsumos($id_atencion)
 	function facturaDb($d)
 	{
 		
-		
-		
-		
-		
 		$det_fac['detalles']=$this->Numero_estado_factura();
 		$numero_factura= $det_fac['detalles'][0]['estado_fac'] + 1;
 		$registro_factura=$det_fac['detalles'][0]['factura_detalle'];
@@ -188,7 +183,7 @@ function obtenerOrdenInsumos($id_atencion)
 		//  cambiamos el estado de la factura con el nuevo numero creado.
 		$actualizar = array(
 		'estado_fac' => $numero_factura);
-		$this -> db -> update('hospi_factura_detalle',$actualizar);
+		$this -> db -> update('coam_factura_detalle',$actualizar);
 		
 		
 		
@@ -205,7 +200,7 @@ function obtenerOrdenInsumos($id_atencion)
 		'fecha' 		=> $d['fecha'],
 		'id_contrato' 		=> $d['contrato'],		
 		'id_usuario' 		=> $this -> session -> userdata('id_usuario'));
-		$this -> db -> insert('hospi_factura',$insert);
+		$this -> db -> insert('coam_factura',$insert);
 		$dat['id_factura'] = $this->db->insert_id();
 		
 		
@@ -231,13 +226,13 @@ function obtenerOrdenInsumos($id_atencion)
 				'valor_materiales' => $d['ValorUvrMateriales'][$i],
 				'id_orde_cups'	=> $d['ordenProcedimientoUvr'][$i],
 				'id_factura' 	=> $dat['id_factura'] );
-				$this->db->insert('hospi_fac_procedimientouvr', $insert);
+				$this->db->insert('coam_fac_procedimientouvr', $insert);
 	        }
 				 
 			}
 		}
 		//----------------------------------------------------
-		
+		print_r($d['ordenCups']);
 
 		//----------------------------------------------------
 		if(count($d['ordenCups']) > 0 && strlen($d['ordenCups'][0]) > 0)
@@ -254,31 +249,13 @@ function obtenerOrdenInsumos($id_atencion)
 					'cantidad' => $d['ordenCupsCantidad'][$i],
 					'id_orde_cups'	=> $d['ordenCups'][$i],
 					'id_factura' 	=> $dat['id_factura'] );
-					$this->db->insert('hospi_fac_procedimiento', $insert); 
+					$this->db->insert('coam_fac_procedimiento', $insert); 
 				}
 			
 			}
 		}
 		//----------------------------------------------------
-			//----------------------------------------------------
-		if(count($d['ordenCupsImagenes']) > 0 && strlen($d['ordenCupsImagenes'][0]) > 0)
-		{
-			for($i=0;$i<count($d['ordenCupsImagenes']);$i++)
-			{
-				if( $d['id_orden_imagenes']!=null)
-					if (in_array($d['ordenCupsImagenes'][$i], $d['id_orden_imagenes']))
-				{
-		
-				$insert = array(
-				'valor_total' => $d['ordenCupsImagenesTotal'][$i],
-				'valor_unidad' => $d['ordenCupsImagenesValorU'][$i] ,
-				'cantidad' => $d['ordenCupsImagenesCantidad'][$i],
-				'id_orde_imagenes'	=> $d['ordenCupsImagenes'][$i],
-				'id_factura' 	=> $dat['id_factura'] );
-				$this->db->insert('hospi_fac_imagenes', $insert); 
-				}
-			}
-		}
+	
 		//----------------------------------------------------
 		if(count($d['insumo']) > 0 && strlen($d['insumo'][0]) > 0)
 		{
@@ -287,29 +264,11 @@ function obtenerOrdenInsumos($id_atencion)
 				$insert = array(
 					'id_orde_insumos' 		=> $d['insumo'][$i],
 					'id_factura' 	=> $dat['id_factura'] );
-				$this->db->insert('hospi_fac_insumos', $insert); 
+				$this->db->insert('coam_fac_insumos', $insert); 
 			}
 		}
 		//----------------------------------------------------
-			//----------------------------------------------------
-		if(count($d['ordenCupsLaboratorios']) > 0 && strlen($d['ordenCupsLaboratorios'][0]) > 0)
-		{
-			for($i=0;$i<count($d['ordenCupsLaboratorios']);$i++)
-			{
-			  if( $d['id_orden_laboratorio']!=null)
-				if (in_array($d['ordenCupsLaboratorios'][$i], $d['id_orden_laboratorio']))
-				{
-					$d['id_orden_laboratorio']=null;
-					$insert = array(
-					'valor_total' => $d['ordenCupsLaboratoriosTotal'][$i],
-					'valor_unidad' => $d['ordenCupsLaboratoriosValorU'][$i] ,
-					'cantidad' => $d['ordenCupsLaboratoriosCantidad'][$i],
-					'id_orde_laboratorios' 		=> $d['ordenCupsLaboratorios'][$i],
-					'id_factura' 	=> $dat['id_factura'] );
-					$this->db->insert('hospi_fac_laboratorios', $insert); 
-				}
-			}
-		}
+		
 		//----------------------------------------------------
 				//----------------------------------------------------
 		if(count($d['medicamento']) > 0 && strlen($d['medicamento'][0]) > 0)
@@ -319,7 +278,7 @@ function obtenerOrdenInsumos($id_atencion)
 				$insert = array(
 					'id_orde_medicamentos' 		=> $d['medicamento'][$i],
 					'id_factura' 	=> $dat['id_factura'] );
-				$this->db->insert('hospi_fac_medicamentos', $insert); 
+				$this->db->insert('coam_fac_medicamentos', $insert); 
 			}
 		}
 		//----------------------------------------------------
@@ -330,13 +289,13 @@ function obtenerOrdenInsumos($id_atencion)
 		function obtenerAtencion($id_paciente)
 	{
 		
-			$this->db->select('hospi_atencion.id_atencion,
+			$this->db->select('coam_atencion.id_atencion,
 		  ');
-		$this->db->from('hospi_atencion');  
-		$this->db->join('hospi_factura', 'hospi_factura.id_atencion = hospi_atencion.id_atencion','left outer');
+		$this->db->from('coam_atencion');  
+		$this->db->join('coam_factura', 'coam_factura.id_atencion = coam_atencion.id_atencion','left outer');
 		
-		$this->db->where('hospi_atencion.id_paciente',$id_paciente);
-		$this->db->where('hospi_factura.id_atencion IS NULL');
+		$this->db->where('coam_atencion.id_paciente',$id_paciente);
+		$this->db->where('coam_factura.id_atencion IS NULL');
 	  $result = $this->db->get();
 		$numcups = $result -> num_rows();
 		if($numcups == 0){
@@ -449,13 +408,13 @@ function obtenerOrdenInsumos($id_atencion)
 function obtenerCupLab($id)
 	{
 		
-			$this->db->select('hospi_orde_laboratorios.cups,
-			hospi_orde_laboratorios.cantidadCups,
+			$this->db->select('coam_orde_laboratorios.cups,
+			coam_orde_laboratorios.cantidadCups,
 		  ');
-		$this->db->from('hospi_orde_laboratorios');  
+		$this->db->from('coam_orde_laboratorios');  
 		
 		
-		$this->db->where('hospi_orde_laboratorios.id',$id);
+		$this->db->where('coam_orde_laboratorios.id',$id);
 		
 	  $result = $this->db->get();
 		$numcups = $result -> num_rows();
@@ -470,13 +429,13 @@ function obtenerCupLab($id)
 function obtenerCupProcedimiento($id)
 	{
 		
-			$this->db->select('hospi_orde_cups.cups,
-			hospi_orde_cups.cantidadCups,
+			$this->db->select('coam_orde_cups.cups,
+			coam_orde_cups.cantidadCups,
 		  ');
-		$this->db->from('hospi_orde_cups');  
+		$this->db->from('coam_orde_cups');  
 		
 		
-		$this->db->where('hospi_orde_cups.id',$id);
+		$this->db->where('coam_orde_cups.id',$id);
 		
 	  $result = $this->db->get();
 		$numcups = $result -> num_rows();
@@ -490,13 +449,13 @@ function obtenerCupProcedimiento($id)
 function obtenerCupImagen($id)
 	{
 		
-			$this->db->select('hospi_orde_imagenes.cups,
-			hospi_orde_imagenes.cantidadCups,
+			$this->db->select('coam_orde_imagenes.cups,
+			coam_orde_imagenes.cantidadCups,
 		  ');
-		$this->db->from('hospi_orde_imagenes');  
+		$this->db->from('coam_orde_imagenes');  
 		
 		
-		$this->db->where('hospi_orde_imagenes.id',$id);
+		$this->db->where('coam_orde_imagenes.id',$id);
 		
 	  $result = $this->db->get();
 		$numcups = $result -> num_rows();
@@ -574,11 +533,11 @@ function obtenerCupImagen($id)
 * @return		array[object]
 */		function obtenerIdFactura($id_atencion,$id_contrato)
 	{
-		$this->db->select('hospi_factura.id_factura,
+		$this->db->select('coam_factura.id_factura,
 		  ');
-		$this->db->from('hospi_factura');  		
-		$this->db->where('hospi_factura.id_atencion',$id_atencion);
-		$this->db->where('hospi_factura.id_contrato',$id_contrato);
+		$this->db->from('coam_factura');  		
+		$this->db->where('coam_factura.id_atencion',$id_atencion);
+		$this->db->where('coam_factura.id_contrato',$id_contrato);
 		
 		$result = $this->db->get();
 		$numcups = $result -> num_rows();
@@ -602,17 +561,17 @@ function obtenerCupImagen($id)
 */	
 	function facCupsLaboratorios($id_factura)
 	{
-$this->db->select('hospi_fac_laboratorios.valor_unidad,
-			hospi_fac_laboratorios.valor_total,
-			hospi_fac_laboratorios.cantidad,
-			hospi_fac_laboratorios.id_factura,
-			hospi_fac_laboratorios.id_orde_laboratorios,
-			hospi_orde_laboratorios.id,
-			hospi_orde_laboratorios.cups,
+$this->db->select('coam_fac_laboratorios.valor_unidad,
+			coam_fac_laboratorios.valor_total,
+			coam_fac_laboratorios.cantidad,
+			coam_fac_laboratorios.id_factura,
+			coam_fac_laboratorios.id_orde_laboratorios,
+			coam_orde_laboratorios.id,
+			coam_orde_laboratorios.cups,
 		  ');
-$this->db->FROM('hospi_fac_laboratorios');
-$this->db->JOIN('hospi_orde_laboratorios','hospi_orde_laboratorios.id = hospi_fac_laboratorios.id_orde_laboratorios');
-$this->db->where('hospi_fac_laboratorios.id_factura',$id_factura);
+$this->db->FROM('coam_fac_laboratorios');
+$this->db->JOIN('coam_orde_laboratorios','coam_orde_laboratorios.id = coam_fac_laboratorios.id_orde_laboratorios');
+$this->db->where('coam_fac_laboratorios.id_factura',$id_factura);
 $res = $this->db->get();
 return $res->result_array();
 	}	
@@ -629,17 +588,17 @@ return $res->result_array();
 */	
 	function facCupsImagenes($id_factura)
 	{
-$this->db->select('hospi_fac_imagenes.valor_unidad,
-			hospi_fac_imagenes.valor_total,
-			hospi_fac_imagenes.cantidad,
-			hospi_fac_imagenes.id_factura,
-			hospi_fac_imagenes.id_orde_imagenes,
-			hospi_orde_imagenes.id,
-			hospi_orde_imagenes.cups,
+$this->db->select('coam_fac_imagenes.valor_unidad,
+			coam_fac_imagenes.valor_total,
+			coam_fac_imagenes.cantidad,
+			coam_fac_imagenes.id_factura,
+			coam_fac_imagenes.id_orde_imagenes,
+			coam_orde_imagenes.id,
+			coam_orde_imagenes.cups,
 		  ');
-$this->db->FROM('hospi_fac_imagenes');
-$this->db->JOIN('hospi_orde_imagenes','hospi_orde_imagenes.id = hospi_fac_imagenes.id_orde_imagenes');
-$this->db->where('hospi_fac_imagenes.id_factura',$id_factura);
+$this->db->FROM('coam_fac_imagenes');
+$this->db->JOIN('coam_orde_imagenes','coam_orde_imagenes.id = coam_fac_imagenes.id_orde_imagenes');
+$this->db->where('coam_fac_imagenes.id_factura',$id_factura);
 $res = $this->db->get();
 return $res->result_array();
 	}
@@ -655,17 +614,17 @@ return $res->result_array();
 */	
 	function facProcedimiento($id_factura)
 	{
-$this->db->select('hospi_fac_procedimiento.valor_unidad,
-			hospi_fac_procedimiento.valor_total,
-			hospi_fac_procedimiento.cantidad,
-			hospi_fac_procedimiento.id_factura,
-			hospi_fac_procedimiento.id_orde_cups,
-			hospi_orde_cups.id,
-			hospi_orde_cups.cups,
+$this->db->select('coam_fac_procedimiento.valor_unidad,
+			coam_fac_procedimiento.valor_total,
+			coam_fac_procedimiento.cantidad,
+			coam_fac_procedimiento.id_factura,
+			coam_fac_procedimiento.id_orde_cups,
+			coam_orde_cups.id,
+			coam_orde_cups.cups,
 		  ');
-$this->db->FROM('hospi_fac_procedimiento');
-$this->db->JOIN('hospi_orde_cups','hospi_orde_cups.id = hospi_fac_procedimiento.id_orde_cups');
-$this->db->where('hospi_fac_procedimiento.id_factura',$id_factura);
+$this->db->FROM('coam_fac_procedimiento');
+$this->db->JOIN('coam_orde_cups','coam_orde_cups.id = coam_fac_procedimiento.id_orde_cups');
+$this->db->where('coam_fac_procedimiento.id_factura',$id_factura);
 $res = $this->db->get();
 return $res->result_array();
 	}	
@@ -680,17 +639,17 @@ return $res->result_array();
 */	
 	function facProcedimientoUvr($id_factura)
 	{
-$this->db->select('hospi_fac_procedimientouvr.valor_unidad,
-			hospi_fac_procedimientouvr.valor_total,
-			hospi_fac_procedimientouvr.cantidad,
-			hospi_fac_procedimientouvr.id_factura,
-			hospi_fac_procedimientouvr.id_orde_cups,
-			hospi_orde_cups.id,
-			hospi_orde_cups.cups,
+$this->db->select('coam_fac_procedimientouvr.valor_unidad,
+			coam_fac_procedimientouvr.valor_total,
+			coam_fac_procedimientouvr.cantidad,
+			coam_fac_procedimientouvr.id_factura,
+			coam_fac_procedimientouvr.id_orde_cups,
+			coam_orde_cups.id,
+			coam_orde_cups.cups,
 		  ');
-$this->db->FROM('hospi_fac_procedimientouvr');
-$this->db->JOIN('hospi_orde_cups','hospi_orde_cups.id = hospi_fac_procedimientouvr.id_orde_cups');
-$this->db->where('hospi_fac_procedimientouvr.id_factura',$id_factura);
+$this->db->FROM('coam_fac_procedimientouvr');
+$this->db->JOIN('coam_orde_cups','coam_orde_cups.id = coam_fac_procedimientouvr.id_orde_cups');
+$this->db->where('coam_fac_procedimientouvr.id_factura',$id_factura);
 $res = $this->db->get();
 return $res->result_array();
 	}	
@@ -741,7 +700,7 @@ return $res->result_array();
 	
 	function Numero_estado_factura()
 	{
-		$this->db->FROM('hospi_factura_detalle');
+		$this->db->FROM('coam_factura_detalle');
 		$result = $this->db->get();
 		return $res = $result -> result_array();
 		
@@ -750,8 +709,8 @@ return $res->result_array();
 	
 	function detalles_factura($id_factura)
 	{
-		$this->db->FROM('hospi_factura');
-		$this->db->WHERE('hospi_factura.id_factura',$id_factura);
+		$this->db->FROM('coam_factura');
+		$this->db->WHERE('coam_factura.id_factura',$id_factura);
 		
 		$result = $this->db->get();
 		return $res = $result -> result_array();
@@ -761,13 +720,12 @@ return $res->result_array();
 	
 		function facturas_atencion($id_atencion)
 	{
-		$this->db->FROM('hospi_factura');
-		$this->db->WHERE('hospi_factura.id_atencion',$id_atencion);
+		$this->db->FROM('coam_factura');
+		$this->db->WHERE('coam_factura.id_atencion',$id_atencion);
 		
 		$result = $this->db->get();
 		return $res = $result -> result_array();
-		
-		
+
 	}
 	
 	
@@ -788,7 +746,7 @@ return $res->result_array();
 		return $res = $result -> result_array();
 	
 	}
-	
+////////////////////////////////////////////////////////	
 function agrega_cero($numero,$ceros){
 echo strlen($numero);
 if(strlen($numero)<$ceros) {
@@ -799,7 +757,38 @@ echo $numero;
 return $numero;
 }
 	
+		/*
+* buscamos las facturas realizadas a un determinado documento..
+* @author Diego Ivan Carvajal <dcarvajal@opuslibertati.org>
+* @author http://www.opuslibertati.org
+* @copyright    GNU GPL 3.0
+
+* @return		array[object]
+*/	
+	function buscarFacturas($numero_documento)
+	{
+		$this->db->select('coam_factura.id_factura');
+		$this->db->FROM('coam_factura');
+		$this->db->JOIN('coam_atencion','coam_atencion.id_atencion = coam_factura.id_atencion');
+		$this->db->JOIN('core_paciente','core_paciente.id_paciente = coam_atencion.id_paciente');
+		$this->db->JOIN('core_tercero','core_tercero.id_tercero = core_paciente.id_tercero');
+		$this->db->where('core_tercero.numero_documento',$numero_documento);
+		$result = $this->db->get();
+		return $res = $result -> result_array();
 	
+	}
+	
+///////////////////fcaturas contrato
+
+		function facturas_contrato($id_factura)
+	{
+		$this->db->FROM('coam_factura');
+		$this->db->WHERE('coam_factura.id_factura',$id_factura);
+		
+		$result = $this->db->get();
+		return $res = $result -> result_array();
+
+	}	
 	
 	
 	///////////////////////////////Fin//////////////////////////////////////////////////
