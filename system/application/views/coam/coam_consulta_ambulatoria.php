@@ -437,6 +437,18 @@ Signos vitales
 	echo $this->load->view('util/util_dx_core');
 ?>
 <tr><td colspan="2" class="linea_azul"></td></tr>
+<tr><td class="campo">Finalidad de la consulta:</td>
+<td>
+<select name="id_finalidad" id="id_finalidad">
+  <option value="0">-Seleccione uno-</option>
+ <?php
+ 	foreach($finalidad as $d)
+	{
+		echo '<option value="'.$d['id_finalidad'].'">'.$d['finalidad'].'</option>';	
+	}
+ ?>
+</select>
+</td></tr>
 <tr><td class="campo">Causa externa:</td>
 <td>
 <select name="id_causa_externa" id="id_causa_externa">
