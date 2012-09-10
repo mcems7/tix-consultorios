@@ -209,7 +209,8 @@ function consulta_ambulatoriaDb($d)
 	$update = array('consulta' => 'SI',
 	'id_medico_consulta' => $d['id_medico'],
 	'id_estado' => '3',
-	'id_causa_externa' => $d['id_causa_externa']);
+	'id_causa_externa' => $d['id_causa_externa'],
+	'id_finalidad' => $d['id_finalidad']);
 	$this->db->where('id_atencion',$d['id_atencion']);
 	$this->db->update('coam_atencion ',$update);
 	//----------------------------------------------------
@@ -525,7 +526,13 @@ function no_respondeDB($id_atencion)
 	$this->db->update('coam_atencion',$update);
 		
 }
-///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////function obtenerListaCausaExterna()
+function obtenerListaFinalidad()
+{
+	$result = $this->db->get('core_finalidad_consulta');
+	return $res = $result -> result_array();
+}
+
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
 }

@@ -101,6 +101,7 @@ function consulta_ambulatoria($id_atencion)
 	$d['tipo_usuario']	= $this->paciente_model->tipos_usuario();
 	$d['id_medico'] = $this->urgencias_model->obtenerIdMedico($this->session->userdata('id_usuario'));
 	$d['causa_externa'] = $this->coam_model->obtenerListaCausaExterna();
+	$d['finalidad'] = $this->coam_model->obtenerListaFinalidad();
 //Verifica si el usuario del sistema esta creado como medico para poder acceder a la consulta
 	if(!$d['id_medico'])
 	{
@@ -172,6 +173,7 @@ function consulta_ambulatoria_()
 	$d['id_atencion'] = $this->input->post('id_atencion');
 	$d['fecha_ini_consulta'] = $this->input->post('fecha_ini_consulta');
 	$d['id_causa_externa'] = $this->input->post('id_causa_externa');
+	$d['id_finalidad'] = $this->input->post('id_finalidad');
 	//----------------------------------------------------------
 	$r = $this->coam_model->consulta_ambulatoriaDb($d);
 	if($r['error'])
