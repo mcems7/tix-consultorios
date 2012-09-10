@@ -35,14 +35,11 @@ function validarDx()
 		return false;
 	}
 	
-	
 	var a = $('tipo_dx_0').checked;
 	var b = $('tipo_dx_1').checked;
 	var c = $('tipo_dx_2').checked;
 	
-	if(a == true || b == true || c|| true){
-		return true;	
-	}else{
+	if(a != true && b != true && c != true){
 		alert("Debe seleccionar el tipo de diagnóstico!!");
 		return false;	
 	}
