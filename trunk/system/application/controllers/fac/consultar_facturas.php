@@ -390,7 +390,7 @@ class Consultar_facturas extends Controller
 	{
 		//----------------------------------------------------------
 		$d = array();
-		$d['urlRegresar'] 	= site_url('fac/factura/index');
+		$d['urlRegresar'] 	= site_url('fac/consultar_facturas/index');
 		$d['atencion'] = $this -> coam_model -> obtenerAtencion($id_atencion);
 	
 		$d['paciente'] = $this -> paciente_model -> obtenerPacienteConsulta($d['atencion']['id_paciente']);
