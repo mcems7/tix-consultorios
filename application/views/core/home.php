@@ -1,4 +1,0 @@
-<br />
-<center>
-
-</center>
