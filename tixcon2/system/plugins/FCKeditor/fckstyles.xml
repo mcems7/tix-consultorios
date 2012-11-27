@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+ * FCKeditor - The text editor for internet
+ * Copyright (C) 2003-2005 Frederico Caldeira Knabben
+ * 
+ * Licensed under the terms of the GNU Lesser General Public License:
+ * 		http://www.opensource.org/licenses/lgpl-license.php
+ * 
+ * For further information visit:
+ * 		http://www.fckeditor.net/
+ * 
+ * "Support Open Source software. What about a donation today?"
+ * 
+ * File Name: fckstyles.xml
+ * 	This is the sample style definitions file. It makes the styles combo
+ * 	completely customizable.
+ * 	See FCKConfig.StylesXmlPath in the configuration file.
+ * 
+ * File Authors:
+ * 		Frederico Caldeira Knabben (fredck@fckeditor.net)
+-->
+<Styles>
+	<Style name="Imagen Izquierda" element="img">
+		<Attribute name="style" value="padding: 5px; margin-right: 5px" />
+		<Attribute name="border" value="0" />
+		<Attribute name="align" value="left" />
+	</Style>
+	
+	<Style name="Imagen Derecho" element="img">
+		<Attribute name="style" value="padding: 5px; margin-left: 5px" />
+		<Attribute name="border" value="0" />
+		<Attribute name="align" value="right" />
+	</Style>
+	<Style name="Titulos Negro" element="span">
+		<Attribute name="style" value="
+	FONT-WEIGHT: bold; 
+	FONT-SIZE: 11px; 
+	COLOR: #3a3a3a; 
+	FONT-FAMILY: Tahoma, Arial, Verdana, Helvetica, sans-serif;" />
+	</Style>
+	
+	<Style name="Titulos Naranja" element="span">
+		<Attribute name="style" value="
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: #f47925; FONT-FAMILY: Tahoma, Arial, Verdana, Helvetica, sans-serif;" />
+	</Style>
+	
+	<Style name="Titulos Azul" element="span">
+	     <Attribute name="style" value="FONT-WEIGHT: bold; FONT-SIZE: 14px; COLOR: #3893de; FONT-FAMILY: Tahoma, Arial, Verdana, Helvetica, sans-serif;" />
+	</Style>
+	
+	<Style name="Texto Normal" element="span">
+		<Attribute name="style" value="FONT-WEIGHT: normal; 
+	FONT-WEIGHT: normal; 
+	FONT-SIZE: 11px; 
+	COLOR: #353434; 
+	FONT-FAMILY: Arial, Verdana, Helvetica, sans-serif;" />
+	</Style>
+	
+		
+</Styles>
