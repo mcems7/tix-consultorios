@@ -1,17 +1,18 @@
-.interna table ,tr{
+.calendario {
+	background-color:#FFF;	
+	}
 
-	border-width:0px;
-	border-style:solid !important;
-	bord	
+.celda{
+	height:70px;
+	vertical-align:text-top;
+	background-color:#E6E6E6;
 }
-.interna td{
-background-color:#ECFFD9;
-  width:auto;
-  padding:0px;
-  vertical-align:top;
-}
+
 .hoy_contenido{
-	background-color:#F00;
+	color:#FFF;	
+}
+
+.hoy_no_contenido{
 	color:#FFF;	
 }
 
@@ -22,8 +23,19 @@ background-color:#ECFFD9;
 .dia{
 	padding:3px;
 	text-align:center;
-	font-weight:bold;	
+	font-weight:bold;
+	background-color:#CCC;
 }
+
+.mes{
+	padding:3px;
+	text-align:center;
+	font-weight:bold;
+	font-size:12px;
+	background-color:#666;
+	color:#FFF;
+}
+
 #parrafo{
   font-size:12px;
   letter-spacing: 0.1em;
