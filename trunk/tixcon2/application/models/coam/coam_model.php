@@ -5,13 +5,14 @@
 ###########################################################################
 */
 /*
- *OPUSLIBERTATI http://www.opuslibertati.org
- *Proyecto: SISTEMA DE INFORMACIÓN - GESTIÓN HOSPITALARIA
+ *TIX - http://www.tix.com.co
+ *Proyecto: TIX CONSULTORIOS
  *Nobre: Coam_model
  *Tipo: modelo
  *Descripcion: Acceso a datos modulo de consulta ambulatoria
- *Autor: Carlos Andrés Jaramillo Patiño <cjaramillo@opuslibertati.org>
+ *Autor: Carlos Andrés Jaramillo Patiño <cajaramillo@tix.com.co>
  *Fecha de creación: 06 de abril de 2012
+ *Última fecha modificación: 10 de enero de 2013
 */
 class Coam_model extends CI_Model 
 {
@@ -533,6 +534,147 @@ function obtenerListaFinalidad()
 	return $res = $result -> result_array();
 }
 
+///////////////////////////////////////////////////////////
+function obtenerConsultorio($id_consultorio)
+{
+	$this->db->where('id_consultorio',$id_consultorio);
+	$res = $this->db->get('coam_consultorios');
+	return $res->row_array();	
+}
+///////////////////////////////////////////////////////////
+function agregar_dispoDB($d)
+{
+	$insert = array(
+		'anno' => $d['anno'],
+		'mes' => $d['mes'],
+		'dia' => $d['dia'],
+		'id_medico' => $d['id_medico'],
+		'id_consultorio' => $d['id_consultorio'],
+		'hora_inicio' => $d['hora_inicio'],
+		'min_inicio' => $d['min_inicio'],
+		'hora_fin' => $d['hora_fin'],
+		'min_fin' => $d['min_fin'],
+		'tiempo_consulta' => $d['tiempo_consulta'],
+		'fecha_creacion' => date('Y-m-d H:i:s'),
+		'id_usuario' => $this->session->userdata('id_usuario'));
+	$this->db->insert('coam_agenda_dispoconsul',$insert);	
+}
+///////////////////////////////////////////////////////////
+function validar_disponibilidadDB($d)
+{
+	$this->db->where('anno',$d['anno']);
+	$this->db->where('mes',$d['mes']);
+	$this->db->where('dia',$d['dia']);
+	$this->db->where('id_consultorio',$d['id_consultorio']);
+	$result = $this->db->get('coam_agenda_dispoconsul');
+	$num = $result->num_rows();
+	if($num == 0){
+		return 'v';
+	}else{
+		if($num == 1){
+			$res = $result->row_array();
+			return $this->validar_disponibilidad_detalle($d,$res);	
+		}else{
+			$res = $result->result_array();
+			$cont_f = 0;
+			foreach($res as $data){
+				$valor = $this->validar_disponibilidad_detalle($d,$data);
+				if($valor == 'f'){
+					$cont_f++;
+				}
+			}
+			if($cont_f > 0){
+				return 'f';
+			}else{
+				return 'v';
+			}	
+		}
+	}
+}
+///////////////////////////////////////////////////////////
+function validar_disponibilidad_detalle($d,$res)
+{
+	if($res['hora_inicio'] > $d['hora_inicio']){
+		if($res['hora_inicio'] > $d['hora_fin']){
+			return 'v';	
+		}else if($res['hora_inicio'] == $d['hora_fin']){
+			if($res['min_inicio'] >= $d['min_fin']){
+				return 'v';		
+			}else{
+				return 'f';	
+			}
+		}else{
+			return 'f';
+		}
+	}else if($res['hora_inicio'] == $d['hora_inicio']){
+		if($res['hora_fin'] <= $d['hora_inicio']){
+			
+			if($res['min_fin'] <= $d['min_inicio']){
+				return 'v';
+			}else{
+				return 'f';	
+			}
+		}else{
+			return 'f';
+		}		
+	}else if($res['hora_inicio'] < $d['hora_inicio']){
+		if($res['hora_fin'] <= $d['hora_inicio']){
+			if($res['min_fin'] <= $d['min_inicio']){
+				return 'v';
+			}else{
+				return 'f';
+			}
+		}else{
+			return 'f';
+		}
+	}
+}
+///////////////////////////////////////////////////////////
+function obtener_agenda_dia($dia,$mes,$anno,$id_consultorio)
+{
+	$this->db->select("CONCAT(core_tercero.primer_nombre,' ',
+		core_tercero.segundo_nombre, ' ',
+		core_tercero.primer_apellido, ' ',
+		core_tercero.segundo_apellido) AS medico,
+		core_especialidad.descripcion,
+		coam_agenda_dispoconsul.id,
+		coam_agenda_dispoconsul.hora_inicio,
+		coam_agenda_dispoconsul.min_inicio,
+		coam_agenda_dispoconsul.hora_fin,
+		coam_agenda_dispoconsul.min_fin,
+		coam_agenda_dispoconsul.tiempo_consulta",false);
+	$this->db->from('coam_agenda_dispoconsul');
+	$this->db->JOIN('core_medico','coam_agenda_dispoconsul.id_medico = core_medico.id_medico');
+	$this->db->JOIN('core_tercero','core_medico.id_tercero = core_tercero.id_tercero');
+	$this->db->JOIN('core_especialidad','core_medico.id_especialidad = core_especialidad.id_especialidad');
+	$this->db->where('anno',$anno);
+	$this->db->where('mes',$mes);
+	$this->db->where('dia',$dia);
+	$this->db->where('id_consultorio',$id_consultorio);
+	$this->db->order_by('hora_inicio','ASC');
+	$this->db->order_by('min_inicio','ASC');
+	$result = $this->db->get();
+	return $result->result_array();	
+}
+///////////////////////////////////////////////////////////
+function verificar_obtener_agenda_dia($dia,$mes,$anno,$id_consultorio)
+{
+	$this->db->where('anno',$anno);
+	$this->db->where('mes',$mes);
+	$this->db->where('dia',$dia);
+	$this->db->where('id_consultorio',$id_consultorio);
+	$result = $this->db->get('coam_agenda_dispoconsul');
+	$num = $result->num_rows();
+	return $num;	
+}
+///////////////////////////////////////////////////////////
+function eliminar_dispo($id)
+{
+	$this->db->where('id',$id);	
+	 $this->db->delete('coam_agenda_dispoconsul');		
+}
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
 }
