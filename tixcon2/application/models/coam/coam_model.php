@@ -12,7 +12,7 @@
  *Descripcion: Acceso a datos modulo de consulta ambulatoria
  *Autor: Carlos Andrés Jaramillo Patiño <cajaramillo@tix.com.co>
  *Fecha de creación: 06 de abril de 2012
- *Última fecha modificación: 10 de enero de 2013
+ *Última fecha modificación: 14 de enero de 2013
 */
 class Coam_model extends CI_Model 
 {
@@ -673,6 +673,97 @@ function eliminar_dispo($id)
 	$this->db->where('id',$id);	
 	 $this->db->delete('coam_agenda_dispoconsul');		
 }
+///////////////////////////////////////////////////////////
+function obtenerAgendasFecha($dia,$mes,$anno)
+{
+	$this->db->select("CONCAT(core_tercero.primer_apellido, ' ',
+		core_tercero.segundo_apellido) AS medico,
+		core_especialidad.descripcion,
+		coam_agenda_dispoconsul.id,
+		coam_agenda_dispoconsul.id_medico,
+		coam_agenda_dispoconsul.hora_inicio,
+		coam_agenda_dispoconsul.min_inicio,
+		coam_agenda_dispoconsul.hora_fin,
+		coam_agenda_dispoconsul.min_fin,
+		coam_agenda_dispoconsul.tiempo_consulta",false);
+	$this->db->from('coam_agenda_dispoconsul');
+	$this->db->JOIN('core_medico','coam_agenda_dispoconsul.id_medico = core_medico.id_medico');
+	$this->db->JOIN('core_tercero','core_medico.id_tercero = core_tercero.id_tercero');
+	$this->db->JOIN('core_especialidad','core_medico.id_especialidad = core_especialidad.id_especialidad');
+	$this->db->where('anno',$anno);
+	$this->db->where('mes',$mes);
+	$this->db->where('dia',$dia);
+	$this->db->order_by('hora_inicio','ASC');
+	$this->db->order_by('min_inicio','ASC');
+	$result = $this->db->get();
+	$num = $result->num_rows();
+	if($num == 0){
+		return $num;
+	}else{
+		return $result->result_array();	
+	}
+}
+///////////////////////////////////////////////////////////
+function obtenerDisponibilidadDia($id)
+{
+	$this->db->select("CONCAT(core_tercero.primer_nombre,' ',
+		core_tercero.segundo_nombre, ' ',
+		core_tercero.primer_apellido, ' ',
+		core_tercero.segundo_apellido) AS medico,
+		core_especialidad.descripcion,
+		coam_agenda_dispoconsul.id,
+		coam_agenda_dispoconsul.id_medico,
+		coam_agenda_dispoconsul.dia,
+		coam_agenda_dispoconsul.mes,
+		coam_agenda_dispoconsul.anno,
+		coam_agenda_dispoconsul.id_consultorio,
+		coam_agenda_dispoconsul.hora_inicio,
+		coam_agenda_dispoconsul.min_inicio,
+		coam_agenda_dispoconsul.hora_fin,
+		coam_agenda_dispoconsul.min_fin,
+		coam_agenda_dispoconsul.tiempo_consulta",false);
+	$this->db->from('coam_agenda_dispoconsul');
+	$this->db->JOIN('core_medico','coam_agenda_dispoconsul.id_medico = core_medico.id_medico');
+	$this->db->JOIN('core_tercero','core_medico.id_tercero = core_tercero.id_tercero');
+	$this->db->JOIN('core_especialidad','core_medico.id_especialidad = core_especialidad.id_especialidad');
+	$this->db->where('id',$id);
+	$result = $this->db->get();
+	return $result->row_array();	
+}
+///////////////////////////////////////////////////////////
+function agregarCitaDb($d)
+{
+	$insert = array(
+		'id_agenda' =>	$d['id_agenda'],
+		'hora' => $d['hora'],
+		'id_tipo_documento' => $d['id_tipo_documento'],
+		'primer_nombre' => $d['primer_nombre'],
+		'segundo_nombre' => $d['segundo_nombre'],
+		'primer_apellido' => $d['primer_apellido'],
+		'segundo_apellido' => $d['segundo_apellido'],
+		'numero_documento' => $d['numero_documento'],
+		'id_entidad' => $d['id_entidad'],
+		'estado' => 'asignada',
+		'fecha_creacion' => date('Y-m-d H:i:s'),
+		'id_usuario' => $this->session->userdata('id_usuario'),
+	);
+	$this->db->insert('coam_agenda_citas',$insert);
+}
+///////////////////////////////////////////////////////////
+function obtener_cita_hora($id_agenda,$hora)
+{
+	$this->db->where('id_agenda',$id_agenda);
+	$this->db->where('hora',$hora);
+	$result = $this->db->get('coam_agenda_citas');	
+	$num = $result->num_rows();
+	if($num == 0){
+		return $num;
+	}else{
+		return $result->row_array();	
+	}
+}
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
