@@ -20,7 +20,7 @@ class Home extends CI_Controller
 		
 		$d = array();
 		$d['nove'] = $this->home_model->obtenerNovedades();
-		$this -> load -> view("core/home",$d);
+		$this -> load -> view("core/pagina_inicio",$d);
 		$this -> load -> view("core/core_fin");
 	}
 	
