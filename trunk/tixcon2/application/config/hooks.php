@@ -11,6 +11,12 @@
 */
 
 
+$hook['post_controller'] = array('class' => 'ValidadorPermisos',
+                                'function' => 'validar',
+                                'filename' => 'validadorPermisos.php',
+                                'filepath' => 'hooks',
+                                'params' => '');
+
 
 /* End of file hooks.php */
 /* Location: ./application/config/hooks.php */
