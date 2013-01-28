@@ -76,7 +76,7 @@ class Administrar_entidad_generica extends CI_Controller
 		$cant_items_pagina = (isset($spec['items_por_pagina'])) ? $spec['items_por_pagina'] : 15;
 
 		$this -> db -> limit($cant_items_pagina, ($json -> pagina - 1) * $cant_items_pagina);
-		$this -> db -> orderby($spec['campo_orden']);
+		$this -> db -> order_by($spec['campo_orden']);
 		$query = $this -> db -> get($spec['tabla']);
 
 		$result = array();
