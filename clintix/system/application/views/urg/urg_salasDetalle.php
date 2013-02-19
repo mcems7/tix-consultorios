@@ -60,7 +60,7 @@ if($d['clasificacion'] == 1 ){
 	$clase = 'listado_triage_3';
 }
 ?>
-<td class="<?=$clase?>"><span class="listado_triage_numero"><?=$d['clasificacion']?></span><br /><?=$d['motivo_consulta']?></td>
+<td class="<?=$clase?>"><?=$d['motivo_consulta']?></td>
 <td align="center">
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
@@ -70,19 +70,17 @@ if($d['clasificacion'] == 1 ){
     <td><?php $row = $this->urgencias_model->obtenerConsulta($d['id_atencion']);
 
   if(isset($row['id_consulta'])) {
-      if($row['verificado']=="NO"){?>
+      ?>
       
-       <a href="<?=site_url('urg/atencion_inicial/editarConsultaInicial/'.$d['id_atencion'])?>">
-<img  src="<?=base_url()?>resources/images/caution.gif" alt="Pendiente verificar Atención Inicial" width="20" height="20" title="Pendiente verificar atención inicial"/>
-</a>
+
       
       <?php  
-      }
-      else{
+      
+
 ?>
-<img  src="<?=base_url()?>resources/images/checkmark.gif" alt="Atención inicial verificada" width="20" height="20" title="Atención inicial Verificada"/>
+
 <?php
-      }
+
   }
   else 
   {
