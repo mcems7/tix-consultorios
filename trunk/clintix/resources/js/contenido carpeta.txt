@@ -1,0 +1,18 @@
+Descripción del contenido de la carpeta resources/js
+
+
+14 de septiembre de 2009
+fValidator.js:	archivo para hacer las validaciones en los formularios
+
+************Archivos para el flas chart V2********************************
+swfobject.js:	archivo necesario para la utilización del Open flash chart 2 (creación de gráficos)
+json2.js:	archivo necesario para la utilización del Open flash chart 2 (creación de gráficos)
+
+
+15 de septiembre de 2009
+calendar.js:	archivo para la utilización de calendarios
+
+**********
+ckeditor:	carpeta con los archivos necesarios para usar el editor de texto enriquecido
+**********
+mootools.js: version 1.2.3-core-nc, archivo para utilización de ajax (versión sin comprimir)
