@@ -1,0 +1,675 @@
+/* estilos aplicados a la presentación interna (columna central de datos) de la plataforma */
+
+.mensaje_advertencia{
+	text-align:center;
+	color:#F00; 
+	font-size:14px; 
+	font-weight:bold;
+}
+
+.tabla_cama{
+	background:#E5E5E5;
+	border-color:#5F7718;
+	border-style:solid;
+	border-width:1px;
+}
+
+.opcion{
+	border-color:#5F7718;
+	border-style:solid;
+	border-width:1px;
+	text-align:center;
+	font-weight:bold;
+	padding:5px;
+	background-color:#E5E5E5;
+}
+.opcion:hover{
+	background-color:#9D9DFF;
+}
+.tabla_registro{
+	background:#F5F7F2;
+	border-color:#5F7718;
+	border-style:solid;
+	border-width:1px;
+}
+.tabla_registro tr{
+	background-color:#E5E5E5;
+}
+.tabla_interna{
+	background:#F5F7F2;
+}
+
+.tabla_interna tr{
+	background-color:#E5E5E5;
+}
+.tabla_interna tr:hover{
+	background-color:#9D9DFF;
+}
+
+.tabla_interna td{
+	padding:5px;
+}
+.campo{
+	text-align:right;
+	font-weight:bold;
+	padding:5px;
+}
+.campo_centro{
+	text-align:center;
+	font-weight:bold;
+	padding:5px;
+}
+
+.campo_sobresale{
+	text-align:center;
+	color:#FFF;
+	background:url(../img/celda_titulo.png);
+	background-repeat:repeat-x;
+	padding:5px;
+	font-weight:bold;
+}
+
+.campo_izquierda{
+	text-align:left;
+	font-weight:bold;
+	padding:5px;
+}
+
+a:link.vpaciente{text-decoration:none;font-weight:bold;color:#617A19;}
+a:visited.vpaciente {text-decoration:none;font-weight:bold;color:#617A19;}
+a:hover.vpaciente {text-decoration:underline;font-weight:bold;color:#000;}
+
+a:link.vmenu{text-decoration:none;font-weight:bold;color:#FFFFFF;}
+a:visited.vmenu {text-decoration:none;font-weight:bold;color:#FFFFFF;}
+a:hover.vmenu {text-decoration:underline;font-weight:bold;color:#345827;}
+
+
+.alerta_sala{
+	background-color:#FF8000;
+	color:#000;
+	font-weight:bold;
+}
+.listado_triage_numero{
+	font-size:18px;
+}
+.listado_triage_1{
+	background-color:#F00;
+	color:#FFF;
+	text-align:center;
+	font-weight:bold;
+	
+}
+.listado_triage_2{
+	background-color:#FF0;
+	color:#000;
+	text-align:center;
+	font-weight:bold;
+}
+.listado_triage_3{
+	background-color:#0C0;
+	color:#000;
+	text-align:center;
+	font-weight:bold;
+}
+
+.tabla_listado{
+	border-width:1px;
+	border-style:solid;
+	border-color:#D8D9D3;
+	background:#F5F7F2;	
+}
+.tabla_listado td{
+	padding:5px;
+}
+.tabla_listado .fila{
+	background-color:#E5E5E5;
+}
+.tabla_listado .fila:hover{
+	background-color:#9D9DFF;
+}
+
+.tabla_listado th{
+	background-color:#CDCDCD;
+	padding:5px;
+}
+.registro_nuevo{
+	background-color:#E5E5E5;
+}
+.registro_nuevo:hover{
+	background-color:#FFFFFF;
+}
+
+.titulo_tabla_listado{
+	text-align:center;
+	font-weight:bold;
+	font-size:14px;
+	height:25px;
+	color:#FFF;
+	background:url(../img/celda_titulo.png);
+	background-repeat:repeat-x;
+}
+
+.tabla_form{
+	border-width:1px;
+	border-style:solid;
+	border-color:#D8D9D3;
+	background:#F5F7F2;	
+}
+.tabla_form td{
+	padding:5px;
+}
+
+.tabla_form th{
+	font-size:14px;
+	height:25px;
+	color:#FFF;
+	background:url(../img/celda_titulo.png);
+	background-repeat:repeat-x;
+}
+
+.tabla_form .campo:hover{
+	background-color:#9D9DFF;
+}
+
+.tituloppal{
+	text-align:center;
+	color:#617A19;
+	font-weight:bold;	
+}
+.subtitulo{
+	text-align:left;
+	color:#617A19;
+	font-weight:bold;	
+}
+.usuario_bienvenida{
+	color:#617A19;
+	font-weight:bold;
+	font-size:10px;
+}
+.usuario_nombre{
+	color:#617A19;
+	font-size:10px;	
+}
+.pie_pagina{
+	text-align:center;
+	font-size:10px;
+	font-weight:bold;
+	color:#3D4B10;
+	padding-top:30px;
+	padding-bottom:10px;	
+}
+
+.bloque_centro{
+	padding:0px 10px 10px 10px;
+	vertical-align:top;
+}
+
+.linea_azul{
+	background: url("../img/barra.png");
+	background-repeat:repeat-x;
+	background-position:center;
+	padding:5px;
+	text-align:right;
+}
+.boton_modificar{
+	background: url("../images/edit.png");
+	background-position:left top;
+	background-repeat:no-repeat;
+	padding:2px 5px 5px 20px;
+	font-size:10px;
+	font-weight:bold;
+}
+.boton_guardar{
+	background: url("../images/save.png");
+	background-position:left top;
+	background-repeat:no-repeat;
+	padding:2px 5px 5px 20px;
+	font-size:10px;
+	font-weight:bold;
+}
+.boton_volver{
+	background: url("../images/delete.png");
+	background-position:left top;
+	background-repeat:no-repeat;
+	padding:2px 5px 5px 15px;
+	font-size:10px;
+	font-weight:bold;
+}
+.texto_barra{
+	background:#F5F7F2;	
+	vertical-align:top;
+	color:#000099;
+	font-style:normal;
+	font-weight:bold;
+	padding-right:5px;
+	padding-left:10px;
+}
+
+.texto_barra_med{
+	vertical-align:top;
+	color:#000099;
+	font-style:normal;
+	font-weight:bold;
+	padding-right:5px;
+	padding-left:10px;
+}
+
+
+.capa_ajax{
+	width: 100%;
+	height: 100%;
+	z-index: 1000;
+	background: #FFF;
+	position: absolute;
+	overflow: auto;
+	opacity: 0.70;
+	-moz-opacity: 0.70;
+	filter: alpha(opacity=70);
+	position: fixed;
+	text-align: center;
+	font-size:15px;
+	font-weight:bold;
+	padding-top: 300px;
+}
+
+.triage_rojo{
+	background: url("../images/rojo.png");
+	background-position:center;
+	background-repeat:no-repeat;
+	padding:10px;
+	text-align:center;
+	vertical-align:middle;
+}
+.triage_amarillo{
+	background: url("../images/amarillo.png");
+	background-position:center;
+	background-repeat:no-repeat;
+	padding:15px;
+	text-align:center;
+	vertical-align:middle;
+}
+.triage_verde{
+	background: url("../images/verde.png");
+	background-position:center;
+	background-repeat:no-repeat;
+	padding:10px;
+	text-align:center;
+	vertical-align:middle;
+}
+.triage_blanco{
+	background: url("../images/blanco.png");
+	background-position:center;
+	background-repeat:no-repeat;
+	padding:10px;
+	text-align:center;
+	vertical-align:middle;
+}
+
+.triage_rojo_con{
+	background: url("../images/rojo.png");
+	font-weight:bold;
+	color:#FFF;
+	font-size:16px;
+	background-position:left;
+	background-repeat:no-repeat;
+	padding:25px;
+	text-align:left;
+	vertical-align:middle;
+}
+.triage_amarillo_con{
+	background: url("../images/amarillo.png");
+	background-position:left;
+	font-size:16px;
+	font-weight:bold;
+	background-repeat:no-repeat;
+	padding:25px;
+	text-align:left;
+	vertical-align:middle;
+}
+.triage_verde_con{
+	background: url("../images/verde.png");
+	background-position: left;
+	font-size:16px;
+	font-weight:bold;
+	background-repeat:no-repeat;
+	padding:25px;
+	text-align:center;
+	vertical-align:middle;
+}
+.triage_blanco_con{
+	background: url("../images/blanco.png");
+	background-position: left;
+	font-size:16px;
+	font-weight:bold;
+	background-repeat:no-repeat;
+	padding:25px;
+	text-align:left;
+	vertical-align:middle;
+}
+
+.tabla_principal{
+	 border: 2px solid #5F7718;
+	 margin-top: 15px;
+	 padding: 0px;	
+	 background:url('../img/esquinaDer.png') left bottom no-repeat,
+	 url('../img/esquinaInf.png') right bottom no-repeat;
+	  background-color:#FFF;
+}
+
+.menu_principal{
+	padding-top:20px;
+	vertical-align:top;
+	text-align:left;
+	padding-left:5px;	
+}
+
+
+/* begin Box, Block */
+.art-Block
+{
+	position:relative;
+	z-index:0;
+	margin:0 auto;
+	min-width:15px;
+	min-height:15px;
+}
+
+.art-Block-body
+{
+	position: relative;
+	z-index:1;
+	padding: 2px;
+}
+
+.art-Block-tr, .art-Block-tl, .art-Block-br, .art-Block-bl, .art-Block-tc, .art-Block-bc,.art-Block-cr, .art-Block-cl
+{
+	position:absolute;
+	z-index:-1;
+}
+
+.art-Block-tr, .art-Block-tl, .art-Block-br, .art-Block-bl
+{
+	width: 14px;
+	height: 14px;
+	background-image: url('../img/Block-s.png');
+}
+
+.art-Block-tl
+{
+	top:0;
+	left:0;
+	clip: rect(auto, 7px, 7px, auto);
+}
+
+.art-Block-tr
+{
+	top: 0;
+	right: 0;
+	clip: rect(auto, auto, 7px, 7px);
+}
+
+.art-Block-bl
+{
+	bottom: 0;
+	left: 0;
+	clip: rect(7px, 7px, auto, auto);
+}
+
+.art-Block-br
+{
+	bottom: 0;
+	right: 0;
+	clip: rect(7px, auto, auto, 7px);
+}
+
+.art-Block-tc, .art-Block-bc
+{
+	left: 7px;
+	right: 7px;
+	height: 14px;
+	background-image: url('../img/Block-h.png');
+}
+
+.art-Block-tc
+{
+	top: 0;
+	clip: rect(auto, auto, 7px, auto);
+}
+
+.art-Block-bc
+{
+	bottom: 0;
+	clip: rect(7px, auto, auto, auto);
+}
+
+.art-Block-cr, .art-Block-cl
+{
+	top: 7px;
+	bottom: 7px;
+	width: 14px;
+	background-image: url('../img/Block-v.png');
+}
+
+.art-Block-cr
+{
+	right:0;
+	clip: rect(auto, auto, auto, 7px);
+}
+
+.art-Block-cl
+{
+	left:0;
+	clip: rect(auto, 7px, auto, auto);
+}
+
+.art-Block-cc
+{
+	position:absolute;
+	z-index:-1;
+	top: 7px;
+	left: 7px;
+	right: 7px;
+	bottom: 7px;
+	background-color: #F5F7F2;
+}
+
+
+.art-Block
+{
+	margin: 7px;
+}
+
+/* end Box, Block */
+
+/* begin BlockHeader */
+.art-BlockHeader
+{
+	position:relative;
+	z-index:0;
+	height: 30px;
+	padding: 0 8px;
+	margin-bottom: 0px;
+}
+
+.art-BlockHeader .t
+{
+	height: 30px;
+	color: #FFFFFF;
+	font-family: "Trebuchet MS", Arial, Helvetica, Sans-Serif;
+	font-size: 13px;
+	font-style: normal;
+	font-weight: bold;
+	white-space : nowrap;
+	padding: 0 6px;
+	line-height: 30px;
+}
+
+.art-BlockHeader .l, .art-BlockHeader .r
+{
+	display:block;
+	position:absolute;
+	z-index:-1;
+	height: 30px;
+	background-image: url('../img/BlockHeader.png');
+}
+
+.art-BlockHeader .l
+{
+	left:0;
+	right:7px;
+}
+
+.art-BlockHeader .r
+{ 
+	width:994px;
+	right:0;
+	clip: rect(auto, auto, auto, 987px);
+}
+
+
+
+
+/* end BlockHeader */
+
+/* begin Box, BlockContent */
+.art-BlockContent
+{
+	position:relative;
+	z-index:0;
+	margin:0 auto;
+	min-width:1px;
+	min-height:1px;
+}
+
+.art-BlockContent-body
+{
+	position: relative;
+	z-index:1;
+	padding: 8px;
+}
+
+
+
+.art-BlockContent-body
+{
+	color:#272924;
+	font-family: Verdana, Geneva, Arial, Helvetica, Sans-Serif;
+	font-size: 12px;
+}
+
+.art-BlockContent-body a:link
+{
+	color: #708D1C;
+	font-family: Verdana, Geneva, Arial, Helvetica, Sans-Serif;
+	text-decoration:none;
+}
+
+.art-BlockContent-body a:visited, .art-BlockContent-body a.visited
+{
+	color: #708D1C;
+	font-family: Verdana, Geneva, Arial, Helvetica, Sans-Serif;
+}
+
+.art-BlockContent-body a:hover, .art-BlockContent-body a.hover
+{
+	color:#345827 ;
+	font-family: Verdana, Geneva, Arial, Helvetica, Sans-Serif;
+	text-decoration:underline;
+}
+
+.art-BlockContent-body ul
+{
+	list-style-type: none;
+	color: #52554A;
+	margin:0;
+	padding:0;
+}
+
+.art-BlockContent-body li
+{
+	font-family: Verdana, Geneva, Arial, Helvetica, Sans-Serif;
+	font-size: 12px;
+}
+
+.art-BlockContent-body ul li
+{
+	padding:0px 0 0px 15px;
+	background-image: url('../img/BlockContentBullets.png');
+	background-repeat:no-repeat;
+	margin:0.5em 0 0.5em 0;
+	line-height:1.2em;
+}
+
+	/* Big box with list of options */
+	#ajax_listOfOptions{
+		position:absolute;	/* Never change this one */
+		width:370px;	/* Width of box */
+		height:250px;	/* Height of box */
+		overflow:auto;	/* Scrolling features */
+		border:1px solid #317082;	/* Dark green border */
+		background-color:#FFF;	/* White background color */
+		text-align:left;
+		font-size:0.9em;
+		z-index:100;
+	}
+	#ajax_listOfOptions div{	/* General rule for both .optionDiv and .optionDivSelected */
+		margin:1px;		
+		padding:1px;
+		cursor:pointer;
+		font-size:0.9em;
+	}
+	#ajax_listOfOptions .optionDiv{	/* Div for each item in list */
+		
+	}
+	#ajax_listOfOptions .optionDivSelected{ /* Selected item in the list */
+		background-color:#317082;
+		color:#FFF;
+	}
+	#ajax_listOfOptions_iframe{
+		background-color:#F00;
+		position:absolute;
+		z-index:5;
+	}
+///////////////////////////////////////
+.cvoptions {
+    background-color: rgba(0, 0, 0, 0.6);
+    display: block;
+    list-style: none outside none;
+    margin: 0;
+    padding: 0px 0px 0px 0;
+    position: fixed;
+    top: 40%;
+    width: 23px;
+    z-index: 100001 !important;
+}
+.cvoptions li {
+    float: right;
+    height: 23px;
+    margin: 1px 0 0;
+    padding: 0;
+    width: 23px;
+}
+.cvoptions li a {
+    display: block;
+    height: 23px;
+    text-indent: -9999px;
+    width: 23px;
+}
+.cvoptions li a.emailbutton {
+    background: url("img/b-email.gif") no-repeat scroll 0 0 transparent;
+}
+.cvoptions li a.emailbutton:hover {
+    background: url("img/b-email.gif") no-repeat scroll 0 -23px transparent;
+}
+.cvoptions li a.pdfbutton {
+    background: url("img/b-pdf.gif") no-repeat scroll 0 0 transparent;
+}
+.cvoptions li a.pdfbutton:hover {
+    background: url("img/b-pdf.gif") no-repeat scroll 0 -23px transparent;
+}
+.cvoptions li a.printbutton {
+    background: url("img/b-print.gif") no-repeat scroll 0 0 transparent;
+}
+.cvoptions li a.printbutton:hover {
+    background: url("img/b-print.gif") no-repeat scroll 0 -23px transparent;
+}

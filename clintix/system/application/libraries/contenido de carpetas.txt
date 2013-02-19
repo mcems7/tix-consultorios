@@ -1,0 +1,9 @@
+Descripción del contenido de la carpeta System/application/libraries
+
+14 de septiembre de 2009
+************Archivos para el flas chart V2********************************
+OFC2:				carpeta con librerias necesarias para la creación de graficos usando Open Flash 				Chart Version 2, estas 	librerias estan diseñadas para php5
+build_package.php:		archivo necesario para la creación de gráficos usando Open Flash Chart Versión 2
+open-flash-chart-object.php:	archivo necesario para la creación de gráficos usando Open Flash Chart Versión 2
+package.xml:			archivo necesario para la creación de gráficos usando Open Flash Chart Versión 2
+**************------*****************************

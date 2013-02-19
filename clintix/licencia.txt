@@ -1,0 +1,31 @@
+SISTEMA DE INFORMACIÓN PARA LA GESTIÓN HOSPITALARIA - 'Yagé'
+
+SGH - Yagé es un sistema de información desarrollado por el Proyecto Opus Libertati,
+al interior del Hospital Departamental Universitario del Quindío San Juan de Dios,
+en la ciudad de Armenia, departamento del Quindío, Colombia.
+
+SGH - Yagé se encuentra licenciado bajo los términos de 
+la licencia GPL Versión 3.0, (ver archivo 'gpl-3.0.txt').
+
+Créditos
+
+Hector Ivan Valencia Muñoz - <hvalencia@opuslibertati.org> 
+Coordinador Proyecto Opus Libertati
+
+Carlos Andrés Jaramillo Patiño - <cjaramillo@opuslibertati.org>
+Líder equipo desarrollo de software
+
+Willian Alberto Ospina Zapata - <wospina@opuslibertati.org>
+Desarrollador
+
+Mario Alberto Martinez Martinez - <mmartinez@opuslibertati.org>
+Desarrollador
+
+José Miguel Londoño Montilla - <jlondono@opuslibertati.org>
+Desarrollador
+
+Diego Ivan Carvajal Gil - <dcarvajal@opuslibertati.org>
+Desarrollador 
+
+http://www.opuslibertati.org
+

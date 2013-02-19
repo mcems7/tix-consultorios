@@ -1,0 +1,2 @@
+
+<iframe src="http://172.16.0.10:8080/pentaho/content/saiku-ui/index.html?solution=Urgencias&path=%2FTriage%2Ftablas+dinamicas&action=Oportunidad+TRIAGE+II.saiku&dimension_prefetch=false&mode=view&biplugin=true#query/open/Oportunidad+TRIAGE+II.saiku&userid=urgencias&password=urgencias" width="100%px" height="90%">

@@ -1,0 +1,58 @@
+.calendario {
+	background-color:#FFF;	
+	}
+
+.celda{
+	height:70px;
+	vertical-align:text-top;
+	background-color:#E6E6E6;
+	font-size:9px;
+}
+
+.hoy_contenido{
+
+}
+
+.hoy_no_contenido{
+	color:#FFF;	
+}
+
+.contendio{
+	font-size:9px;
+}
+
+.dia{
+	padding:3px;
+	text-align:center;
+	font-weight:bold;
+	background-color:#CCC;
+}
+
+.mes{
+	padding:3px;
+	text-align:center;
+	font-weight:bold;
+	font-size:12px;
+	background-color:#666;
+	color:#FFF;
+}
+
+#parrafo{
+  font-size:12px;
+  letter-spacing: 0.1em;
+  text-align:justify;
+}
+#pie{
+  padding: 2px;
+  text-align: center;
+  font-size: 12px;
+}
+.centrado{
+  text-align: center;
+}
+.negrita{
+  font-weight:bold;
+}
+.texto{
+	text-align:justify;
+}
