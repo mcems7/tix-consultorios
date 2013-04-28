@@ -56,6 +56,7 @@ echo form_hidden('id',$dispo['id']);
 ?>
 <h1 class="tituloppal">Módulo consulta ambulatoria</h1>
 <h2 class="subtitulo">Citas del día</h2>
+
 <center>
 <table width="100%" class="tabla_form">
 <tr><td>
@@ -70,7 +71,9 @@ echo form_hidden('id',$dispo['id']);
 &nbsp;<strong>Tiempo duración por consulta:</strong>&nbsp;<?=$dispo['tiempo_consulta']?>
 </td>
 </tr>
-<tr><td><strong>Nombre del médico:</strong>&nbsp;<?=$dispo['medico']?>
+<tr><td><strong>Nombre del médico:</strong><?=nbs().$dispo['medico']?>
+</td></tr>
+<tr><td><strong>Especialidad:</strong><?=nbs().$dispo['descripcion']?>
 </td></tr>
 </table>
 </td></tr>
@@ -102,12 +105,13 @@ while($cont < $fin)
 
 <?php
 }else{
+	$imgprop = array('src' => 'resources/images/add.png','alt' => 'Asignar cita','title' => 'Asignar cita');
 ?>
 <tr><td class="campo" width="15%" style="background-color:#0C0">
 <?=date("H:i",$cont)?>
 </td>
-<td>
-<strong>[<a href="#tabla_cita" onclick="agregarCitaForm('<?=$cont?>')">Asignar</a>]</strong>
+<td><strong><?=img($imgprop).nbs()?>[<a href="#" onclick="
+Abrir_ventana('<?=site_url("/coam/coam_agenda_citas/agregarCitaForm/".$cont."/".$dispo['id'])?>')">Asignar</a>]</strong>
 <?php
 }
 ?>

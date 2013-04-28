@@ -178,7 +178,7 @@ onkeyup="ajax_showOptions(this,'coam/coam_agenda_consultorio/obtener_medico',eve
   <tr>
     <td class="campo" width="15%">Hora inicio:</td>
     <td><?=str_pad($d['hora_inicio'],2,'0',STR_PAD_LEFT).':'.str_pad($d['min_inicio'],2,'0',STR_PAD_LEFT)?>&nbsp;</td>
-    <td rowspan="2" class="campo_centro" width="60%"><?=$d['medico']?>&nbsp;</td>
+    <td rowspan="2" class="campo_centro" width="60%"><?=$d['medico'].br()."Especialidad: ".$d['descripcion']?>&nbsp;</td>
     <td rowspan="2" class="campo_centro" width="10%"><?=$d['tiempo_consulta']?>&nbsp;Mins</td>
      <td rowspan="2" width="15%">  <?
 $data = array(	'name' => 'e',

@@ -7,17 +7,17 @@ function regresar()
 }
 ////////////////////////////////////////////////////////////////////////////////
 window.addEvent("domready", function(){
-	obtenerConsultorio();					 
+	obtenerConsultorio('<?=date('Y')?>','<?=date('m')?>');			 
 });
 ////////////////////////////////////////////////////////////////////////////////
-function obtenerConsultorio()
+function obtenerConsultorio(anno,mes)
 {
 	var consultorio = $('id_consultorio').value;
 	if(consultorio == 0){
 		return false;
 	}
 	
-	var var_url = '<?=site_url()?>/coam/coam_agenda_consultorio/agendaConsultorio';
+	var var_url = '<?=site_url()?>/coam/coam_agenda_consultorio/agendaConsultorio/'+consultorio+'/'+anno+'/'+mes;
 	var ajax1 = new Request(
 	{
 		url: var_url,
@@ -59,10 +59,9 @@ echo form_open('',$attributes);
   <th style="text-align:right">
 Consultorio:&nbsp;
 <?php
-$id = $this->session->userdata('id_consultorioCoam');
+$id = $this->session->userdata('id_consultorioAgenda');
 ?>
-<select name="id_consultorio" id="id_consultorio" onchange="obtenerConsultorio()">
-    <option value="0">-Seleccione uno-</option>
+<select name="id_consultorio" id="id_consultorio" onchange="obtenerConsultorio('<?=date('Y')?>','<?=date('m')?>');	">  <option value="0">-Seleccione uno-</option>
 <?php
 foreach($consultorios as $d)
 {

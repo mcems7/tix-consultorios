@@ -22,7 +22,7 @@ function regresar()
   <tr>
     <td class="campo" width="15%">Hora inicio:</td>
     <td width="15%"><?=str_pad($d['hora_inicio'],2,'0',STR_PAD_LEFT).':'.str_pad($d['min_inicio'],2,'0',STR_PAD_LEFT)?>&nbsp;</td>
-    <td rowspan="2" class="campo_centro" width="70%"><?=$d['medico']?>&nbsp;</td>
+    <td rowspan="2" class="campo_centro" width="70%"><?=$d['medico'].br()."Especialidad: ".$d['descripcion']?>&nbsp;</td>
     <td rowspan="2" class="campo_centro" width="10%"><?=$d['tiempo_consulta']?>&nbsp;Mins</td>
   </tr>
   <tr>
