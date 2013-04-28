@@ -10,15 +10,34 @@
 }
 
 .hoy_contenido{
+	text-align:center;
+}
 
+.agenda_llena{
+	color:#F00;
+}
+
+.hoy_contenido_cita{
+	text-align:left;
+}
+
+.contenido_cita{
+	text-align:left;
 }
 
 .hoy_no_contenido{
+	text-align:center;
 	color:#FFF;	
 }
 
-.contendio{
-	font-size:9px;
+.hoy_contenido_dia{
+	color:#F00;
+	font-weight:bold;
+	font-size:12px;	
+}
+
+.contenido{
+	text-align:center;
 }
 
 .dia{
@@ -36,6 +55,9 @@
 	background-color:#666;
 	color:#FFF;
 }
+.mes a{
+	color:#FFF;
+	}
 
 #parrafo{
   font-size:12px;
@@ -55,4 +77,34 @@
 }
 .texto{
 	text-align:justify;
+}
+
+a.Ntooltip {
+position: relative; /* es la posición normal */
+text-decoration: none !important; /* forzar sin subrayado */
+/* color:#0080C0 !important;  forzar color del texto */
+font-weight:bold !important; /* forzar negritas */
+}
+
+a.Ntooltip:hover {
+z-index:999; /* va a estar por encima de todo */
+ /*background-color:#FFF; DEBE haber un color de fondo */
+}
+
+a.Ntooltip span {
+display: none; /* el elemento va a estar oculto */
+}
+
+a.Ntooltip:hover span {
+display: block; /* se fuerza a mostrar el bloque */
+position: absolute; /* se fuerza a que se ubique en un lugar de la pantalla */
+top:2em; left:2em; /* donde va a estar */
+width:250px; /* el ancho por defecto que va a tener */
+padding:4px; /* la separación entre el contenido y los bordes */
+background-color: #FFF; /* el color de fondo por defecto */
+color: #000; /* el color de los textos por defecto */
+border-color:#006;
+border-style:solid;
+border-width:thin;
+
 }

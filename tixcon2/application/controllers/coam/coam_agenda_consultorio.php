@@ -29,7 +29,7 @@ function index()
 	redirect('coam/coam_agenda_consultorio/calendario');
 }
 ///////////////////////////////////////////////////////////////////
-function agendaConsultorio()
+function agendaConsultorio($id_consultorio,$anno,$mes)
 {
 	$d = array();
 	
@@ -37,26 +37,35 @@ function agendaConsultorio()
 	$d['id_consultorio'] 	= $this->input->post('id_consultorio');
 	//----------------------------------------------------------
 	$d['consultorio'] = $this ->coam_model->obtenerConsultorio($d['id_consultorio']);
+	$d['a'] = $anno;
+	$d['m'] = $mes;
+
 	//----------------------------------------------------------
 	$prefs = array (
+	'show_next_prev' => 'true',
 		'start_day'	=> 'monday',
 		'month_type'=> 'long',
-		'day_type'	=> 'long'
+		'day_type'	=> 'short'
 	);
-
+	
 $prefs['template'] = '{table_open}<table border="0" cellpadding="2" cellspacing="3" width="100%" class="calendario">{/table_open}
 {heading_row_start}<tr>{/heading_row_start}
-{heading_previous_cell}<td><a href="{previous_url}">&lt;&lt;</a></td>{/heading_previous_cell}
+{heading_previous_cell}
+<td class="mes">
+<a href="#" onclick="obtenerConsultorio(\''.date('Y').'\',\''.str_pad($mes-1,2,'0',STR_PAD_LEFT).'\');">&lt;&lt;</a>
+</th>{/heading_previous_cell}
 {heading_title_cell}<td colspan="{colspan}" class="mes"><strong>{heading}</strong>&nbsp;-&nbsp;'.$d['consultorio']['consultorio'].'</td>{/heading_title_cell}
-{heading_next_cell}<td><a href="{next_url}">&gt;&gt;</a></td>{/heading_next_cell}
+{heading_next_cell}<td class="mes">
+<a href="#" onclick="obtenerConsultorio(\''.date('Y').'\',\''.str_pad($mes+1,2,'0',STR_PAD_LEFT).'\');">&gt;&gt;</a>
+</td>{/heading_next_cell}
 {heading_row_end}</tr>{/heading_row_end}
 {week_row_start}<tr>{/week_row_start}
 {week_day_cell}<td class="dia">{week_day}</td>{/week_day_cell}
 {week_row_end}</tr>{/week_row_end}
 {cal_row_start}<tr>{/cal_row_start}
 {cal_cell_start}<td class="celda">{/cal_cell_start}
-{cal_cell_content}<strong>{day}</strong><div class="contenido">{content}</div></strong>{/cal_cell_content}
-{cal_cell_content_today}<strong>{day}<div class="hoy_contenido">{content}</div></strong>{/cal_cell_content_today}
+{cal_cell_content}<strong>{day}</strong><div class="contenido"><br />{content}</div></strong>{/cal_cell_content}
+{cal_cell_content_today}<div class="hoy_contenido_dia">{day}&nbsp;HOY</div><div class="hoy_contenido"><br />{content}</div>{/cal_cell_content_today}
 {cal_cell_no_content}<strong>{day}</strong>{/cal_cell_no_content}
 {cal_cell_no_content_today}<div class="hoy_no_contenido">{day}</div>{/cal_cell_no_content_today}
 {cal_cell_blank}&nbsp;{/cal_cell_blank}
