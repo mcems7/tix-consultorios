@@ -2,40 +2,6 @@
 // JavaScript Document
 remitido = null;
 ////////////////////////////////////////////////////////////////////////////////
-function obtenerContratosEntidad()
-{
-	var var_url = '<?=site_url()?>/coam/coam_admision/obtenerContratosEntidad';
-	
-	var ajax1 = new Request(
-	{
-		url: var_url,
-		method: 'post',
-		data:  $('formulario').toQueryString(),
-		onSuccess: function(html){$('div_contrato').set('html', html);},
-		evalScripts: true,
-		onFailure: function(){alert('Error ejecutando ajax!');}
-		
-	});
-	ajax1.send();
-}
-
-function obtenerContratosEntidadEditar(id_atencion)
-{
-	var var_url = '<?=site_url()?>/coam/coam_admision/obtenerContratosEntidadEditar/'+id_atencion;
-	
-	var ajax1 = new Request(
-	{
-		url: var_url,
-		method: 'post',
-		data:  $('formulario').toQueryString(),
-		onSuccess: function(html){$('div_contrato').set('html', html);},
-		evalScripts: true,
-		onFailure: function(){alert('Error ejecutando ajax!');}
-		
-	});
-	ajax1.send();
-}
-////////////////////////////////////////////////////////////////////////////////
 function obtenerDepartamento()
 {
 	var var_url = '<?=site_url()?>/core/administrar_ter/obtenerDepartamento';
@@ -79,48 +45,6 @@ function noAplicaMunicipio()
 		method: 'post',
 		data:  $('formulario').toQueryString(),
 		onSuccess: function(html){$('div_lista_municipios').set('html', html);},
-		evalScripts: true,
-		onFailure: function(){alert('Error ejecutando ajax!');}
-		
-	});
-	ajax1.send();
-}
-////////////////////////////////////////////////////////////////////////////////
-function verificar_entidad()
-{
-	var origen = $('id_origen').value;
-	if(origen == 0){
-		return false;	
-	}
-	
-	var var_url = '<?=site_url()?>/coam/coam_admision/verificarEntidad';	
-	var ajax1 = new Request(
-	{
-		url: var_url,
-		method: 'post',
-		data:  $('formulario').toQueryString(),
-		onSuccess: function(html){$('responsable_pago').set('html', html);},
-		evalScripts: true,
-		onFailure: function(){alert('Error ejecutando ajax!');}
-		
-	});
-	ajax1.send();
-}
-
-function verificar_entidadEdit(id_atencion)
-{
-	var origen = $('id_origen').value;
-	if(origen == 0){
-		return false;	
-	}
-	
-	var var_url = '<?=site_url()?>/coam/coam_admision/verificarEntidadEdit/'+id_atencion;	
-	var ajax1 = new Request(
-	{
-		url: var_url,
-		method: 'post',
-		data:  $('formulario').toQueryString(),
-		onSuccess: function(html){$('responsable_pago').set('html', html);},
 		evalScripts: true,
 		onFailure: function(){alert('Error ejecutando ajax!');}
 		
@@ -174,44 +98,10 @@ function validarFormulario()
 		alert("Debe seleccionar un estado civil!!");
 		return false;}
 		
-	if($('id_cobertura').value == 0){
-		alert("Debe seleccionar un tipo de usuario!!");
-		return false;}
-		
 	if($('id_entidad').value == 0){
 		alert("Debe seleccionar una Entidad administradora de planes de beneficio!!");
 		return false;}
 		
-	if($('tipo_afiliado').value == 0){
-		alert("Debe seleccionar el tipo de afiliado!!");
-		return false;}
-	
-	for(i=0; i <document.formulario.desplazado.length; i++){
-    if(document.formulario.desplazado[i].checked){
-      var val = document.formulario.desplazado[i].value;}
-    }
-	if(!(val == 'SI' || val == 'NO')){
-		alert("Debe indicar si el paciente es desplazado o no!!");
-	}
-	
-var origen = $('id_origen').value;
-	if(origen == 0){
-		alert("Debe seleccionar el origen de la atención!!");
-		return false;	
-	}
-	
-	var valor = $('id_entidad_pago').value;
-	if(valor == 0){
-		alert("Debe seleccionar la entidad responsable de pago!!");
-		return false;	
-	}
-	
-	var id_ser = $('id_contrato').value;
-	if(id_ser == 0){
-		alert("Debe seleccionar un contrato!!");
-		return false;	
-	}
-	
 	if(confirm('La información ingresada se almacenara en el sistema\n  ¿Esta seguro que desea continuar?'))
 	{
 			return true

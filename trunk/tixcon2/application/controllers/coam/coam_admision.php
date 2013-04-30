@@ -50,31 +50,25 @@ function index()
 * @since		20120406
 * @version		20120406
 */	
-function buscarPaciente()
+function buscar_paciente_adm($id_cita)
 {
-	//----------------------------------------------------------
-	$d = array();
-	//----------------------------------------------------------
-	$n_d 	= $this->input->post('numero_documento');
-	/*
-		Verificar existencia de atenciones vigentes
-	*/
-	$verTer = $this ->tercero_model ->verificaTercero($n_d);
+	$cita = $this ->coam_model->obtener_cita($id_cita);
+	$verTer = $this ->tercero_model ->verificaTercero($cita['numero_documento']);
 	//Verifica la existencia del tercero en el sistema
 	if($verTer != 0){
 		$verPas = $this->paciente_model->verificarPaciente($verTer);
 	//Verifica la existencia del tercero como paciente
 		if($verPas != 0){
 			//Admision de un paciente ya existente
-			redirect('coam/coam_admision/admPacienteExiste/'.$verPas);
+			redirect('coam/coam_admision/admPacienteExiste/'.$verPas.'/'.$id_cita);
 		}else{
 			//Admision de un tercero existente
-			redirect('coam/coam_admision/admTerceroExiste/'.$verTer);
+			redirect('coam/coam_admision/admTerceroExiste/'.$verTer.'/'.$id_cita);
 		}
 	}else{
 		//Admision de un tercero y paciente nuevo
-		redirect('coam/coam_admision/admTerceroPaciente/'.$n_d);
-	}
+		redirect('coam/coam_admision/admTerceroPaciente/'.$id_cita);
+	}	
 }
 ///////////////////////////////////////////////////////////////////
 /*
@@ -86,7 +80,7 @@ function buscarPaciente()
 * @since		20120406
 * @version		20120406
 */	
-function admPacienteExiste($id_paciente)
+function admPacienteExiste($id_paciente,$id_cita)
 {
 	//----------------------------------------------------------
 	$d = array();
@@ -94,18 +88,13 @@ function admPacienteExiste($id_paciente)
 	$d['urlRegresar'] 	= site_url('coam/coam_admision');
 	$d['paciente'] = $this -> paciente_model -> obtenerPacienteConsulta($id_paciente);
 	$d['tercero'] = $this -> paciente_model -> obtenerTercero($d['paciente']['id_tercero']);
-	$d['tipo_usuario']= $this -> paciente_model -> tipos_usuario();
 	$d['tipo_documento'] = $this -> tercero_model -> tipos_documento();		
 	$d['pais'] = $this -> tercero_model -> obtenerPais();
-	$d['departamento'] = $this -> tercero_model -> obtenerDepartamento();
-	
-	$d['municipio'] = $this -> tercero_model->obtenerMunicipio($d['tercero']['departamento']);
-	
+	$d['departamento'] = $this -> tercero_model -> obtenerDepartamento();	
+	$d['municipio'] = $this -> tercero_model->obtenerMunicipio($d['tercero']['departamento']);	
 	$d['entidad'] = $this -> paciente_model->obtenerEntidades();
-	$d['origen'] = $this->coam_model->obtenerOrigenesAtencion();
-	$d['tipo_usuario']	= $this -> paciente_model->tipos_usuario();
+	$d['cita'] = $this ->coam_model->obtener_cita($id_cita);
 	$d['consultorios'] = $this ->coam_model->obtenerConsultorios();
-	
 	//----------------------------------------------------------
 	$this->load->view('core/core_inicio');
 	$this -> load -> view('coam/coam_adm_pacExi', $d);
@@ -133,10 +122,8 @@ function admTerceroExiste($id_tercero)
 	$d['departamento']	 	= $this -> tercero_model -> obtenerDepartamento();	
 	$d['municipio'] 		= $this -> tercero_model -> obtenerMunicipio($d['tercero']['departamento']);
 	$d['pais']				= $this -> tercero_model -> obtenerPais();
-	$d['tipo_usuario']	= $this -> paciente_model -> tipos_usuario();
 	$d['entidad'] = $this -> paciente_model -> obtenerEntidades();
-	$d['origen'] = $this->coam_model->obtenerOrigenesAtencion();
-	$d['tipo_usuario']	= $this -> paciente_model -> tipos_usuario();
+	$d['cita'] = $this ->coam_model->obtener_cita($id_cita);
 	$d['consultorios'] = $this ->coam_model->obtenerConsultorios();
 	//----------------------------------------------------------
 	$this->load->view('core/core_inicio');
@@ -154,20 +141,18 @@ function admTerceroExiste($id_tercero)
 * @since		20120406
 * @version		20120406
 */
-function admTerceroPaciente($n_d)
+function admTerceroPaciente($id_cita)
 {
 	//----------------------------------------------------------
 	$d = array();
 	//----------------------------------------------------------
-	$d['urlRegresar'] 	= site_url('core/administrar_paciente');
-	$d['n_d'] = $n_d;
+	$d['cita'] = $this ->coam_model->obtener_cita($id_cita);
+	//----------------------------------------------------------
+	$d['urlRegresar'] 	= site_url('coam/coam_gestion_consultorio/index');
 	$d['tipo_documento']	= $this -> tercero_model -> tipos_documento();
-	$d['pais']				= $this -> tercero_model -> obtenerPais();
-	$d['tipo_usuario']	= $this -> paciente_model -> tipos_usuario();
+	$d['pais']				= $this -> tercero_model -> obtenerPais();	
 	$d['entidad'] = $this -> paciente_model -> obtenerEntidades();
-	$d['origen'] = $this->coam_model->obtenerOrigenesAtencion();
-	$d['tipo_usuario']	= $this -> paciente_model -> tipos_usuario();
-	$d['consultorios'] = $this ->coam_model->obtenerConsultorios();	
+	$d['consultorios'] = $this ->coam_model->obtenerConsultorios();
 	//----------------------------------------------------------
 	$this->load->view('core/core_inicio');
 	$this -> load -> view('coam/coam_adm_TerPac',$d);
@@ -193,7 +178,7 @@ function admTerceroPaciente_()
 	$verTer = $this -> tercero_model ->verificaTercero($d['numero_documento']);
 	if($verTer != 0){
 		$dat['mensaje'] = "Ya existe un tercero con el número de documento de identidad ".$d['numero_documento']."!!";
-		$dat['urlRegresar'] = site_url('coam/coam_admision/index');
+		$dat['urlRegresar'] = site_url('coam/coam_gestion_consultorio/index');
 		$this -> load -> view('core/presentacionMensaje', $dat);
 		return;
 	}
@@ -204,7 +189,6 @@ function admTerceroPaciente_()
 	$d['segundo_nombre'] 	= mb_strtoupper($this->input->post('segundo_nombre'),'utf-8');
 	$d['id_tipo_documento'] = $this->input->post('id_tipo_documento');
 	$d['fecha_nacimiento'] = $this->input->post('fecha_nacimiento');
-
 	$d['razon_social'] = "";
 	$d['pais'] 	= $this->input->post('pais');
 	$d['departamento'] 	= $this->input->post('departamento');
@@ -216,7 +200,7 @@ function admTerceroPaciente_()
 	$d['celular'] 	= $this->input->post('celular');
 	$d['fax'] 	= $this->input->post('fax');
 	$d['email'] 	= $this->input->post('email');
-	$d['observaciones'] 	= $this->input->post('observaciones');
+	$d['observaciones'] = mb_strtoupper($this->input->post('observaciones'),'utf-8');
 	//----------------------------------------------------------
 	$r = $this -> tercero_model -> crearTerceroDb($d);
 	$d['id_tercero'] 	= $r['id_tercero'];
@@ -224,29 +208,19 @@ function admTerceroPaciente_()
 	$d['genero'] = $this->input->post('genero');
 	$d['estado_civil'] = $this->input->post('estado_civil');
 	$d['id_entidad'] = $this->input->post('id_entidad');
-	$d['id_cobertura'] = $this->input->post('id_cobertura');
-	$d['tipo_afiliado'] = $this->input->post('tipo_afiliado');
-	$d['nivel_categoria'] 	= $this->input->post('nivel_categoria');
-	$d['desplazado'] = $this->input->post('desplazado');
-	$d['observaciones'] = mb_strtoupper($this->input->post('observaciones'),'utf-8');
 	//----------------------------------------------------------
 	$r = $this -> paciente_model -> crearPacienteDb($d);
 	$d['id_paciente'] = $r['id_paciente'];
 	//----------------------------------------------------------
-	$d['id_contrato'] 			= $this->input->post('id_contrato');
-	$d['id_consultorio'] = $this->input->post('id_consultorio');
-	$d['id_origen'] = $this->input->post('id_origen');
-	$d['poliza_soat'] = $this->input->post('poliza_soat');
-	$d['observaciones_adm'] 	= mb_strtoupper($this->input->post('observaciones_adm'),'utf-8');	
-	$d['id_entidad_pago'] 	= $this->input->post('id_entidad_pago');
-	//----------------------------------------------------------
+	$d['id_cita'] 	= $this->input->post('id_cita');
+	$d['id_consultorio'] 	= $this->input->post('id_consultorio');
 	$r = $this ->coam_model->crearAdmisionDb($d);
 	//----------------------------------------------------------
-$this -> Registro -> agregar($this -> session -> userdata('id_usuario'),'coam',__CLASS__,__FUNCTION__
+	$this->Registro->agregar($this -> session -> userdata('id_usuario'),'coam',__CLASS__,__FUNCTION__
 ,'aplicacion',"Se creo la atención con id ".$r['id_id_atencion']);
 //----------------------------------------------------------
 	$dt['mensaje']  = "El ingreso del paciente se ha realizado exitosamente!!";
-	$dt['urlRegresar'] 	= site_url("coam/coam_admision/index/");
+	$dt['urlRegresar'] 	= site_url("coam/coam_gestion_consultorio/index");
 	$this -> load -> view('core/presentacionMensaje', $dt);
 	return;	
 	//----------------------------------------------------------
@@ -295,28 +269,19 @@ function admTerceroExiste_()
 	$d['genero'] = $this->input->post('genero');
 	$d['estado_civil'] = $this->input->post('estado_civil');
 	$d['id_entidad'] = $this->input->post('id_entidad');
-	$d['id_cobertura'] = $this->input->post('id_cobertura');
-	$d['tipo_afiliado'] = $this->input->post('tipo_afiliado');
-	$d['nivel_categoria'] 	= $this->input->post('nivel_categoria');
-	$d['desplazado'] = $this->input->post('desplazado');
 	//----------------------------------------------------------
 	$r = $this -> paciente_model -> crearPacienteDb($d);
 	$d['id_paciente'] = $r['id_paciente'];
 	//----------------------------------------------------------
-	$d['id_contrato'] 			= $this->input->post('id_contrato');
+	$d['id_cita'] = $this->input->post('id_cita');
 	$d['id_consultorio'] = $this->input->post('id_consultorio');
-	$d['id_origen'] = $this->input->post('id_origen');
-	$d['poliza_soat'] = $this->input->post('poliza_soat');
-	$d['observaciones_adm'] 	= mb_strtoupper($this->input->post('observaciones_adm'),'utf-8');	
-	$d['id_entidad_pago'] 	= $this->input->post('id_entidad_pago');
-	//----------------------------------------------------------
 	$r = $this ->coam_model->crearAdmisionDb($d);
 	//----------------------------------------------------------
 $this -> Registro -> agregar($this -> session -> userdata('id_usuario'),'coam',__CLASS__,__FUNCTION__
 ,'aplicacion',"Se creo la atención con id ".$r['id_id_atencion']);
 //----------------------------------------------------------
 	$dt['mensaje']  = "El ingreso del paciente se ha realizado exitosamente!!";
-	$dt['urlRegresar'] 	= site_url("coam/coam_admision/index/");
+	$dt['urlRegresar'] 	= site_url("coam/coam_gestion_consultorio/index");
 	$this -> load -> view('core/presentacionMensaje', $dt);
 	return;	
 	//----------------------------------------------------------
@@ -365,27 +330,18 @@ function admPacienteExiste_()
 	$d['genero'] = $this->input->post('genero');
 	$d['estado_civil'] = $this->input->post('estado_civil');
 	$d['id_entidad'] = $this->input->post('id_entidad');
-	$d['id_cobertura'] = $this->input->post('id_cobertura');
-	$d['tipo_afiliado'] = $this->input->post('tipo_afiliado');
-	$d['nivel_categoria'] 	= $this->input->post('nivel_categoria');
-	$d['desplazado'] = $this->input->post('desplazado');
 	//----------------------------------------------------------
 	$this -> paciente_model -> editarPacienteDb($d);
 	//----------------------------------------------------------
-	$d['id_contrato'] 			= $this->input->post('id_contrato');
-	$d['id_consultorio'] = $this->input->post('id_consultorio');
-	$d['id_origen'] = $this->input->post('id_origen');
-	$d['poliza_soat'] = $this->input->post('poliza_soat');
-	$d['observaciones_adm'] 	= mb_strtoupper($this->input->post('observaciones_adm'),'utf-8');	
-	$d['id_entidad_pago'] 	= $this->input->post('id_entidad_pago');
-	//----------------------------------------------------------
+	$d['id_cita'] 	= $this->input->post('id_cita');
+	$d['id_consultorio'] 	= $this->input->post('id_consultorio');
 	$r = $this ->coam_model->crearAdmisionDb($d);
 	//----------------------------------------------------------
 	$this -> Registro -> agregar($this -> session -> userdata('id_usuario'),'coam',__CLASS__,__FUNCTION__
 ,'aplicacion',"Se creo la atención con id ".$r['id_id_atencion']);
 //----------------------------------------------------------
 	$dt['mensaje']  = "El ingreso del paciente se ha realizado exitosamente!!";
-	$dt['urlRegresar'] 	= site_url("coam/coam_admision/index/");
+	$dt['urlRegresar'] 	= site_url("coam/coam_gestion_consultorio/index");
 	$this -> load -> view('core/presentacionMensaje', $dt);
 	return;	
 	//----------------------------------------------------------
@@ -406,21 +362,15 @@ function editar_admision($id_atencion)
 	$d = array();
 	//----------------------------------------------------------
 	$d['atencion'] = $this->coam_model->obtenerAtencion($id_atencion);
-	$d['urlRegresar'] 	= site_url('coam/coam_admision');
+	$d['urlRegresar'] 	= site_url('coam/coam_gestion_consultorio/index');
 	$d['paciente'] = $this -> paciente_model -> obtenerPacienteConsulta($d['atencion']['id_paciente']);
 	$d['tercero'] = $this -> paciente_model -> obtenerTercero($d['paciente']['id_tercero']);
-	$d['tipo_usuario']= $this -> paciente_model -> tipos_usuario();
 	$d['tipo_documento'] = $this -> tercero_model -> tipos_documento();		
 	$d['pais'] = $this -> tercero_model -> obtenerPais();
 	$d['departamento'] = $this -> tercero_model -> obtenerDepartamento();
-	
 	$d['municipio'] = $this -> tercero_model->obtenerMunicipio($d['tercero']['departamento']);
-	
 	$d['entidad'] = $this -> paciente_model->obtenerEntidades();
-	$d['origen'] = $this->coam_model->obtenerOrigenesAtencion();
-	$d['tipo_usuario']	= $this -> paciente_model->tipos_usuario();
 	$d['consultorios'] = $this ->coam_model->obtenerConsultorios();
-	
 	//----------------------------------------------------------
 	$this->load->view('core/core_inicio');
 	$this->load->view('coam/coam_adm_editar_admision',$d);
@@ -473,19 +423,9 @@ function editar_admision_()
 	$d['genero'] = $this->input->post('genero');
 	$d['estado_civil'] = $this->input->post('estado_civil');
 	$d['id_entidad'] = $this->input->post('id_entidad');
-	$d['id_cobertura'] = $this->input->post('id_cobertura');
-	$d['tipo_afiliado'] = $this->input->post('tipo_afiliado');
-	$d['nivel_categoria'] 	= $this->input->post('nivel_categoria');
-	$d['desplazado'] = $this->input->post('desplazado');
+	$d['id_consultorio'] 	= $this->input->post('id_consultorio');
 	//----------------------------------------------------------
 	$this -> paciente_model -> editarPacienteDb($d);
-	//----------------------------------------------------------
-	$d['id_contrato'] 			= $this->input->post('id_contrato');
-	$d['id_consultorio'] = $this->input->post('id_consultorio');
-	$d['id_origen'] = $this->input->post('id_origen');
-	$d['poliza_soat'] = $this->input->post('poliza_soat');
-	$d['observaciones_adm'] 	= mb_strtoupper($this->input->post('observaciones_adm'),'utf-8');	
-	$d['id_entidad_pago'] 	= $this->input->post('id_entidad_pago');
 	//----------------------------------------------------------
 	$this ->coam_model->editar_admisionDb($d);
 	//----------------------------------------------------------
@@ -493,7 +433,7 @@ function editar_admision_()
 ,'aplicacion',"Se edito la atención con id ".$d['id_atencion']);
 //----------------------------------------------------------
 	$dt['mensaje']  = "La modificación de la admisión de ha realizado exitosamente!!";
-	$dt['urlRegresar'] 	= site_url("coam/coam_admision/index/");
+	$dt['urlRegresar'] 	= site_url("coam/coam_gestion_consultorio/index");
 	$this -> load -> view('core/presentacionMensaje', $dt);
 	return;	
 	//----------------------------------------------------------

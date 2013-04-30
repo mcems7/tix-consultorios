@@ -103,13 +103,15 @@ function consulta_ambulatoria($id_atencion)
 	$d['causa_externa'] = $this->coam_model->obtenerListaCausaExterna();
 	$d['finalidad'] = $this->coam_model->obtenerListaFinalidad();
 //Verifica si el usuario del sistema esta creado como medico para poder acceder a la consulta
-	if(!$d['id_medico'])
+/*	if(!$d['id_medico'])
 	{
 		$dt['mensaje']  = "El usuario ".$this->session->userdata('_username')." no se encuentra asignado al personal medico!!";
 		$dt['urlRegresar'] 	= site_url("coam/coam_gestion_atencion/index");
 		$this->load->view('core/presentacionMensaje', $dt);
 		return;	
 	}
+	
+	*/
 	$this->coam_model->cambiar_estado($id_atencion,'2');
 	$d['medico'] = $this->urgencias_model->obtenerMedico($d['id_medico']);
 	//-----------------------------------------------------------
@@ -167,6 +169,7 @@ function consulta_ambulatoria_()
 	$d['exa_mental'] = mb_strtoupper($this->input->post('exa_mental'),'utf-8');
 	$d['dx'] = $this->input->post('dx_ID_');
 	$d['tipo_dx'] = $this->input->post('tipo_dx_');
+	$d['orden_dx'] = $this->input->post('orden_dx_');
 	$d['analisis'] = mb_strtoupper($this->input->post('analisis'),'utf-8');
 	$d['conducta'] = mb_strtoupper($this->input->post('conducta'),'utf-8');
 	$d['id_medico'] = $this->input->post('id_medico');

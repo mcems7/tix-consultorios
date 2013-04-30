@@ -120,6 +120,47 @@ if(strlen($consulta['peso']) > 0 && strlen($consulta['talla']) > 0){
 ?>
 <tr>
   <td class="negrita" width="30%">Diagn&oacute;stico <?=$i?>:<?=nbs().'<strong>'.$d['id_diag'].'</strong> '.$d['diagnostico']?></td>
+  <td>
+  
+  <?php
+switch ($d['orden_dx']) {
+    case 0:
+        $orden_dx = "Diagnóstico principal";
+        break;
+    case 1:
+        $orden_dx = "Diagnóstico relacionado 1";
+        break;
+    case 2:
+        $orden_dx = "Diagnóstico relacionado 2";
+        break;
+    case 3:
+        $orden_dx = "Diagnóstico relacionado 3";
+        break;
+      case 4:
+        $orden_dx = "Diagnóstico relacionado 4";
+        break;
+        case 5:
+        $orden_dx = "Diagnóstico relacionado 5";
+        break;
+        case 6:
+        $orden_dx = "Diagnóstico relacionado 6";
+        break;
+}
+$tipodx = '';
+switch ($d['tipo_dx']) {
+    case 1:
+        $tipodx = "Impresión diagnóstica";
+        break;
+    case 2:
+        $tipodx = "Confirmado nuevo";
+        break;
+    case 3:
+        $tipodx = "Confirmado repetido";
+        break;
+}
+
+echo '<strong>',$orden_dx,'</strong>',br(),$tipodx;
+?></td>
 </tr>
 <?php
       }

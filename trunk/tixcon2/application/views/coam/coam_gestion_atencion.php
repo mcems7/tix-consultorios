@@ -50,8 +50,8 @@ if(isset($entidad['razon_social']))
 <td>
 <table width="100%" border="0" cellspacing="2" cellpadding="2" class="tabla_interna">
 <tr>
-<td class="campo">Fecha y hora de ingreso:</td>
-<td><?=$atencion['fecha_ingreso']?>&nbsp;</td>
+<td class="campo">Fecha y hora consulta:</td>
+<td><?=$consulta['fecha_ini_consulta']?>&nbsp;</td>
 <td class="campo">Consultorio:</td>
 <td><?=$atencion['consultorio']?>&nbsp;</td>
 </tr>

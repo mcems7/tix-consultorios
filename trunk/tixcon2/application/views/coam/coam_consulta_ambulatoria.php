@@ -92,6 +92,7 @@ echo form_open('/coam/coam_gestion_atencion/consulta_ambulatoria_',$attributes);
 $fecha_ini_consulta = date('Y-m-d H:i:s');
 echo form_hidden('fecha_ini_consulta',$fecha_ini_consulta);
 echo form_hidden('id_atencion',$atencion['id_atencion']);
+echo form_hidden('id_finalidad','10');
 echo form_hidden('id_medico',$medico['id_medico']);
 $edad = $this->lib_edad->edad($tercero['fecha_nacimiento']);
 $annos = $this->lib_edad->annos($tercero['fecha_nacimiento']);
@@ -140,21 +141,6 @@ Ampliar la informaci&oacute;n del paciente
 <tr><td class="campo">Fax:</td><td><?=$tercero['fax']?></td></tr>
 <tr><td class="campo">Correo electrónico:</td><td><?=$tercero['email']?></td></tr>
 <tr><td class="campo">Observaciones:</td><td><?=$tercero['observaciones']?></td></tr>
-<tr><td class="campo">Tipo usuario:</td><td>
-<?
-	foreach($tipo_usuario as $d)
-	{
-		if($paciente['id_cobertura'] == $d['id_cobertura'])
-		{
-			echo $d['cobertura'];
-		}
-	}
-?>
-</td></tr>
-<tr><td class="campo">Tipo de afiliado:</td><td><?=$paciente['tipo_afiliado']?></td></tr>
-<tr><td class="campo">Nivel o categoria:</td><td><?=$paciente['nivel_categoria']?></td></tr>
-<tr><td class="campo">Desplazado:</td><td> <?=$paciente['desplazado']?></td></tr>
-<tr><td class="campo">Observaciones:</td><td><?=$paciente['observaciones']?></td></tr>
 </table>
 <p class="linea_azul">
 <span class="texto_barra">
@@ -437,18 +423,6 @@ Signos vitales
 	echo $this->load->view('util/util_dx_core');
 ?>
 <tr><td colspan="2" class="linea_azul"></td></tr>
-<tr><td class="campo">Finalidad de la consulta:</td>
-<td>
-<select name="id_finalidad" id="id_finalidad">
-  <option value="0">-Seleccione uno-</option>
- <?php
- 	foreach($finalidad as $d)
-	{
-		echo '<option value="'.$d['id_finalidad'].'">'.$d['finalidad'].'</option>';	
-	}
- ?>
-</select>
-</td></tr>
 <tr><td class="campo">Causa externa:</td>
 <td>
 <select name="id_causa_externa" id="id_causa_externa">

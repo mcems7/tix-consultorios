@@ -174,6 +174,7 @@ function obtener_paciente_cita($id_paciente)
 			$('segundo_nombre').value = '".$tercero['segundo_nombre']."'
 			$('paciente_nuevo').value = 'NO'
 			$('id_tipo_documento').selectedIndex = '".$tercero['id_tipo_documento']."'
+			$('id_entidad').selectedIndex = '".$paciente['id_entidad']."'
 			$('documento_hidden').disabled = true;
 		</script>";
 		

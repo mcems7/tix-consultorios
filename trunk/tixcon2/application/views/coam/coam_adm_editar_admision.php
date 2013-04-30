@@ -257,24 +257,9 @@ if($paciente['estado_civil'] == 'Soltero'){
       <option value="Unión libre" <?=$res4?>>Unión libre</option>
     </select></td>
   </tr>
-  
-<tr><td class="campo">Tipo usuario:</td>
-<td><select name="id_cobertura" id="id_cobertura">
-<option value="0">-Seleccione uno-</option>
-<?
-foreach($tipo_usuario as $d)
-{
-	if($paciente['id_cobertura'] == $d['id_cobertura'] ){
-	echo '<option value="'.$d['id_cobertura'].'" selected="selected">'.$d['cobertura'].'</option>';
-	}else{
-	echo '<option value="'.$d['id_cobertura'].'">'.$d['cobertura'].'</option>';
-	}
-}
-?>
-</select></td></tr>
 <tr><td class="campo">Entidad:</td>
 <td>
-<select name="id_entidad" id="id_entidad" style="font-size:9px" onchange="obtenerContratosEntidadEditar('<?=$atencion['id_atencion']?>')">
+<select name="id_entidad" id="id_entidad">
 <option value="0" selected="selected">-Seleccione uno-</option>
 <?
 foreach($entidad as $d)
@@ -287,55 +272,22 @@ foreach($entidad as $d)
 }
 ?>
 </select>
-<script language="javascript">
-obtenerContratosEntidadEditar('<?=$atencion['id_atencion']?>');
-</script>
 </td></tr>
-<tr><td class="campo">Tipo de afiliado:</td>
-<?php
-$res1 = '';
-$res2 = '';
-$res3 = '';
-$res4 = '';
-if($paciente['tipo_afiliado'] == 'Cotizante'){
-	$res1 = 'selected="selected"';
-}else if($paciente['tipo_afiliado'] == 'Beneficiario'){
-	$res2 = 'selected="selected""';
-}else if($paciente['tipo_afiliado'] == 'Adicional'){
-	$res3 = 'selected="selected"';
-}else if($paciente['tipo_afiliado'] == 'Particular'){
-	$res4 = 'selected="selected"';
+<tr><td class="campo">Consultorio:</td>
+<td><select name="id_consultorio" id="id_consultorio">
+<option value="0">-Seleccione uno-</option>
+<?
+foreach($consultorios as $d)
+{
+	if($atencion['id_consultorio'] == $d['id_consultorio']){
+	echo '<option value="'.$d['id_consultorio'].'" selected="selected">'.$d['consultorio'].'</option>';
+	}else{
+	echo '<option value="'.$d['id_consultorio'].'">'.$d['consultorio'].'</option>';
+	}
 }
 ?>
-<td><select name="tipo_afiliado" id="tipo_afiliado">
-    <option value="0">-Seleccione uno-</option>
-    <option value="Cotizante" <?=$res1?>>Cotizante</option>
-    <option value="Beneficiario" <?=$res2?>>Beneficiario</option>
-    <option value="Adicional" <?=$res3?>>Adicional</option>
-      <option value="Particular" <?=$res4?>>Particular</option>
 </select></td></tr>
-<tr><td class="campo">Nivel o categoria:</td>
-<td>
-<?=form_input(array('name' => 'nivel_categoria',
-							'id'=> 'nivel_categoria',
-							'maxlength' => '2',
-							'size'=> '2',
-							'class'=>"fValidate['integer']",
-							'value' => $paciente['nivel_categoria']))?>
-</td></tr>
-<tr><td class="campo">Desplazado:</td>
-<?php
-$res1 = '';
-$res2 = '';
-if($paciente['desplazado'] == 'SI'){
-	$res1 = 'checked="checked"';
-}else if($paciente['desplazado'] == 'NO'){
-	$res2 = 'checked="checked"';
-}
-?>
-<td>Si&nbsp;<input name="desplazado" id="desplazado" type="radio" value="SI" <?=$res1?>/>
-    No&nbsp;<input name="desplazado" id="desplazado" type="radio" value="NO" <?=$res2?>/></td>
-</tr>  
+
   <tr>
     <td class="campo">Observaciones:</td>
     <td><?=form_textarea(array('name' => 'observaciones',
@@ -344,8 +296,6 @@ if($paciente['desplazado'] == 'SI'){
 								'rows' => '3',
 								'cols'=> '30'))?></td>
   </tr>
-<tr><td colspan="2" class="linea_azul">&nbsp;</td></tr>
-<?=$this->load->view('coam/coam_adm_general_editar')?>
 <tr><td colspan="2" class="linea_azul">&nbsp;</td></tr>
   <tr><td colspan="2" align="center">
   <?

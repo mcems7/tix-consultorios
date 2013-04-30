@@ -6,6 +6,7 @@ $attributes = array('id'       => 'formulario',
 					'onsubmit' => 'return validarFormulario()');
 	echo form_open('/coam/coam_admision/admTerceroExiste_',$attributes);
 	echo form_hidden('id_tercero',$tercero['id_tercero']);
+	echo form_hidden('id_cita',$cita['id_cita']);
 ?>
 <h1 class="tituloppal">Módulo consulta ambulatoria</h1>
 <h2 class="subtitulo">Admisión de un paciente</h2>
@@ -92,13 +93,11 @@ $attributes = array('id'       => 'formulario',
  <?
 		foreach($pais as $d)
 		{	
-			
 			if($tercero['pais'] == $d['PAI_PK']){
 				echo '<option value="'.$d['PAI_PK'].'" selected="selected">'.$d['PAI_NOMBRE'].'</option>';
 			}else{
 				echo '<option value="'.$d['PAI_PK'].'">'.$d['PAI_NOMBRE'].'</option>';
-			}
-			
+			}		
 		}
 ?>
     </select></td>
@@ -229,19 +228,8 @@ $attributes = array('id'       => 'formulario',
       <option value="Unión libre">Unión libre</option>
     </select></td>
   </tr>
-  
-<tr><td class="campo">Tipo usuario:</td>
-<td><select name="id_cobertura" id="id_cobertura">
-<option value="0">-Seleccione uno-</option>
-<?
-foreach($tipo_usuario as $d)
-{
-	echo '<option value="'.$d['id_cobertura'].'">'.$d['cobertura'].'</option>';
-}
-?>
-</select></td></tr>
 <tr><td class="campo">Entidad:</td>
-<td><select name="id_entidad" id="id_entidad" style="font-size:9px" onchange="obtenerContratosEntidad()">
+<td><select name="id_entidad" id="id_entidad">
 <option value="0" selected="selected">-Seleccione uno-</option>
 <?
 foreach($entidad as $d)
@@ -250,26 +238,20 @@ foreach($entidad as $d)
 }
 ?>
 </select></td></tr>
-<tr><td class="campo">Tipo de afiliado:</td>
-<td><select name="tipo_afiliado" id="tipo_afiliado">
-    <option value="0">-Seleccione uno-</option>
-    <option value="Cotizante">Cotizante</option>
-    <option value="Beneficiario">Beneficiario</option>
-    <option value="Adicional">Adicional</option>
-     <option value="Particular">Particular</option>
-</select></td></tr>
-<tr><td class="campo">Nivel o categoria:</td>
-<td>
-<?=form_input(array('name' => 'nivel_categoria',
-					'id'=> 'nivel_categoria',
-					'maxlength' => '2',
-					'size' => '2',
-					'class'=>"fValidate['integer']"))?>
-</td></tr>
-<tr><td class="campo">Desplazado:</td>
-<td>Si&nbsp;<input name="desplazado" id="desplazado" type="radio" value="SI"/>
-    No&nbsp;<input name="desplazado" id="desplazado" type="radio" value="NO"/></td>
-</tr>  
+<tr><td class="campo">Consultorio:</td>
+<td><select name="id_consultorio" id="id_consultorio">
+<option value="0">-Seleccione uno-</option>
+<?
+foreach($consultorios as $d)
+{
+	if($cita['id_consultorio'] == $d['id_consultorio']){
+	echo '<option value="'.$d['id_consultorio'].'" selected="selected">'.$d['consultorio'].'</option>';
+	}else{
+	echo '<option value="'.$d['id_consultorio'].'">'.$d['consultorio'].'</option>';
+	}
+}
+?>
+</select></td></tr>  
   <tr>
     <td class="campo">Observaciones:</td>
     <td><?=form_textarea(array('name' => 'observaciones',
@@ -277,8 +259,6 @@ foreach($entidad as $d)
 								'rows' => '3',
 								'cols'=> '30'))?></td>
   </tr>
-<tr><td colspan="2" class="linea_azul">&nbsp;</td></tr>
-<?=$this->load->view('coam/coam_adm_general')?>
 <tr><td colspan="2" class="linea_azul">&nbsp;</td></tr>
 <tr><td colspan="2" align="center">
   <?
