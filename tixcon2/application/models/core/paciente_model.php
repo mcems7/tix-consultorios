@@ -198,11 +198,7 @@ $this-> db -> join('core_cobertura_salud','core_paciente.id_cobertura = core_cob
   core_paciente.id_paciente,
   core_paciente.estado_civil,
   core_paciente.id_entidad,
-  core_paciente.tipo_afiliado,
-  core_paciente.nivel_categoria,
-  core_paciente.desplazado,
   core_paciente.observaciones,
-   core_paciente.id_cobertura,
   core_paciente.id_tercero');
 		$this-> db -> from('core_paciente');
 $this-> db -> join('core_cobertura_salud','core_paciente.id_cobertura = core_cobertura_salud.id_cobertura','left');
@@ -221,10 +217,6 @@ $this-> db -> join('core_tercero','core_eapb.id_tercero = core_tercero.id_tercer
 		'genero' => $d['genero'],
 		'estado_civil' => $d['estado_civil'], 	
 		'id_entidad' => $d['id_entidad'], 
-		'id_cobertura' => $d['id_cobertura'], 	
-		'tipo_afiliado' => $d['tipo_afiliado'],
-		'nivel_categoria' => $d['nivel_categoria'],
-		'desplazado' =>	$d['desplazado'],
 		'observaciones' =>	$d['observaciones'],
 		'fecha_creacion' =>	date('Y-m-d H:i:s'),
 		'fecha_modificacion' =>	date('Y-m-d H:i:s'),
@@ -239,10 +231,6 @@ $this-> db -> join('core_tercero','core_eapb.id_tercero = core_tercero.id_tercer
 		//----------------------------------------------------
 		$insert = array(	
 		'id_entidad' => $d['id_entidad'], 
-		'id_cobertura' => $d['id_cobertura'], 	
-		'tipo_afiliado' => $d['tipo_afiliado'],
-		'nivel_categoria' => $d['nivel_categoria'],
-		'desplazado' =>	$d['desplazado'],
 		'observaciones' =>	$d['observaciones'],
 		'fecha_modificacion' =>	date('Y-m-d H:i:s'),
 		'id_paciente' =>	$dat['id_paciente'],
@@ -270,10 +258,6 @@ $this-> db -> join('core_tercero','core_eapb.id_tercero = core_tercero.id_tercer
 		'genero' => $d['genero'], 	
 		'estado_civil' => $d['estado_civil'], 	
 		'id_entidad' => $d['id_entidad'], 
-		'id_cobertura' => $d['id_cobertura'], 	
-		'tipo_afiliado' => $d['tipo_afiliado'],
-		'nivel_categoria' => $d['nivel_categoria'],
-		'desplazado' =>	$d['desplazado'],
 		'observaciones' =>	$d['observaciones'],
 		'fecha_creacion' =>	date('Y-m-d H:i:s'),
 		'fecha_modificacion' =>	date('Y-m-d H:i:s'),
@@ -286,10 +270,6 @@ $this-> db -> join('core_tercero','core_eapb.id_tercero = core_tercero.id_tercer
 		//----------------------------------------------------
 		$insert = array( 		
 		'id_entidad' => $d['id_entidad'], 
-		'id_cobertura' => $d['id_cobertura'], 	
-		'tipo_afiliado' => $d['tipo_afiliado'],
-		'nivel_categoria' => $d['nivel_categoria'],
-		'desplazado' =>	$d['desplazado'],
 		'observaciones' =>	$d['observaciones'],
 		'fecha_modificacion' =>	date('Y-m-d H:i:s'),
 		'id_paciente' =>	$d['id_paciente'],

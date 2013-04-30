@@ -39,6 +39,7 @@ function agregar_dx()
 	//---------------------------------------------------------------
 	$d['dx_ID'] = $this->input->post('dx_ID');
 	$d['tipo_dx'] = $this->input->post('tipo_dx');
+	$d['orden_dx'] = $this->input->post('orden_dx');
 	$d['dx'] = $this->util_model->obtenerDxCon($d['dx_ID']);
 	echo $this->load->view('util/util_dxInfo',$d);
 }

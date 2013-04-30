@@ -39,16 +39,12 @@ function crearAdmisionDb($d)
 	'id_paciente' => $d['id_paciente'],
 	'fecha_ingreso' => date('Y-m-d H:i:s'),
 	'fecha_egreso' => '0000-00-00 00:00:00',
+	'id_cita' => $d['id_cita'],
 	'id_consultorio' => $d['id_consultorio'],
 	'id_entidad' => $d['id_entidad'],
 	'consulta' => 'NO',
 	'admision' => 'NO',
-	'id_entidad_pago' => $d['id_entidad_pago'],
-	'id_origen' => $d['id_origen'],
-	'poliza_soat' => $d['poliza_soat'],
 	'id_estado' => '1',
-	'id_contrato' => $d['id_contrato'],
-	'observaciones_adm' => $d['observaciones_adm'],
 	'activo'		=> 'SI',
 	'fecha_modificacion' =>	date('Y-m-d H:i:s'),
 	'id_usuario_admision' => $this->session->userdata('id_usuario'));
@@ -56,6 +52,10 @@ function crearAdmisionDb($d)
 	//----------------------------------------------------
 	$id_atencion = $this->db->insert_id();
 	//----------------------------------------------------
+	$update = array('estado' => 'confirmada');
+	$this->db->where('id_cita',$d['id_cita']);
+	$this->db->update('coam_agenda_citas',$update);
+	
 	return $id_atencion;
 }
 ////////////////////////////////////////////////////////////
@@ -196,16 +196,17 @@ function consulta_ambulatoriaDb($d)
 	$r = $this->db->insert('coam_nota_inicial_exa',$insertExa);
 	//----------------------------------------------------
 	if(count($d['dx']) > 0 && strlen($d['dx'][0]) > 0)
-	{
-		for($i=0;$i<count($d['dx']);$i++)
 		{
-			$insert = array(
-				'id_diag' 		=> $d['dx'][$i],
-				'tipo_dx' 		=> $d['tipo_dx'][$i],
-				'id_consulta' 	=> $id_consulta );
-			$this->db->insert('coam_nota_inicial_diag', $insert); 
+			for($i=0;$i<count($d['dx']);$i++)
+			{
+				$insert = array(
+					'id_diag' 		=> $d['dx'][$i],
+					'orden_dx' 		=> $i,
+					'tipo_dx' 		=> $d['tipo_dx'][$i],
+					'id_consulta' 	=> $id_consulta );
+				$this->db->insert('coam_nota_inicial_diag', $insert); 
+			}
 		}
-	}
 	//----------------------------------------------------	
 	$update = array('consulta' => 'SI',
 	'id_medico_consulta' => $d['id_medico'],
@@ -243,6 +244,7 @@ function obtenerDxConsulta($id_consulta)
 {
 	$this->db->select('coam_nota_inicial_diag.id_diag,
 	coam_nota_inicial_diag.tipo_dx,
+	coam_nota_inicial_diag.orden_dx,
 	core_diag_item.diagnostico,
 	coam_nota_inicial_diag.id_consulta');
 	$this->db->from('coam_nota_inicial_diag');
@@ -483,11 +485,6 @@ function editar_admisionDb($d)
 	$update = array(
 	'id_consultorio' => $d['id_consultorio'],
 	'id_entidad' => $d['id_entidad'],
-	'id_entidad_pago' => $d['id_entidad_pago'],
-	'id_origen' => $d['id_origen'],
-	'poliza_soat' => $d['poliza_soat'],
-	'id_contrato' => $d['id_contrato'],
-	'observaciones_adm' => $d['observaciones_adm'],
 	'fecha_modificacion' =>	date('Y-m-d H:i:s'));
 	$this->db->where('id_atencion',$d['id_atencion']);
 	$this->db->update('coam_atencion',$update);
@@ -771,7 +768,53 @@ function obtener_estado_agenda($id_agenda)
 	return $num;	
 }
 ///////////////////////////////////////////////////////////
+function obtenerCitasFecha($d)
+{
+	$this->db->SELECT(" 
+		coam_consultorios.consultorio,
+		concat(coam_agenda_citas.primer_nombre, ' ', coam_agenda_citas.segundo_nombre, ' ', coam_agenda_citas.primer_apellido, ' ', coam_agenda_citas.segundo_apellido) AS paciente,
+		coam_agenda_citas.numero_documento,
+		core_tipo_documentos.tipo_documento,
+		coam_agenda_citas.estado,
+		coam_agenda_citas.hora,
+		coam_agenda_citas.id_cita,
+		core_especialidad.descripcion,
+		concat(core_tercero.primer_nombre, ' ', core_tercero.segundo_nombre, ' ', core_tercero.primer_apellido, ' ', core_tercero.segundo_apellido) AS medico,
+		coam_agenda_dispoconsul.hora_inicio,
+		coam_agenda_dispoconsul.min_inicio,
+		coam_agenda_dispoconsul.hora_fin,
+		coam_agenda_dispoconsul.min_fin,
+		coam_agenda_dispoconsul.mes,
+		coam_agenda_dispoconsul.dia,
+		coam_agenda_dispoconsul.anno",false);
+	$this->db->FROM("coam_agenda_citas");
+	$this->db->JOIN("coam_agenda_dispoconsul","coam_agenda_citas.id_agenda = coam_agenda_dispoconsul.id");
+	$this->db->JOIN("coam_consultorios","coam_agenda_dispoconsul.id_consultorio = coam_consultorios.id_consultorio");
+	$this->db->JOIN("core_tipo_documentos","coam_agenda_citas.id_tipo_documento = core_tipo_documentos.id_tipo_documento");
+	$this->db->JOIN("core_medico","coam_agenda_dispoconsul.id_medico = core_medico.id_medico");
+	$this->db->JOIN("core_especialidad","core_medico.id_especialidad = core_especialidad.id_especialidad");
+	$this->db->JOIN("core_tercero","core_medico.id_tercero = core_tercero.id_tercero");
+	$this->db->where('coam_agenda_dispoconsul.mes',$d['mes']);
+	$this->db->where('coam_agenda_dispoconsul.dia',$d['dia']);
+	$this->db->where('coam_agenda_dispoconsul.anno',$d['anno']);
+	$this->db->order_by('coam_agenda_citas.hora','ASC');
+	$result = $this->db->get();
+	$num = $result->num_rows();
+	if($num == 0){
+		return $num;
+	}else{
+		return $result->result_array();	
+	}
+}
 ///////////////////////////////////////////////////////////
+function obtener_cita($id_cita)
+{
+	$this->db->where('id_cita',$id_cita);
+	$this->db->from('coam_agenda_citas');
+	$this->db->join('coam_agenda_dispoconsul','coam_agenda_citas.id_agenda = coam_agenda_dispoconsul.id');
+	$result = $this->db->get();
+	return $result->row_array();
+}
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////

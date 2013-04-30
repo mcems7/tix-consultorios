@@ -58,6 +58,25 @@ function traer_paciente(id)
 	ajax.send();	
 }
 ///////////////////////////////////////////////////////////////////
+window.addEvent("domready", function(){
+	var exValidatorA = new fValidator("formulario");		 
+});
+///////////////////////////////////////////////////////////////////
+function validarFormulario()
+{
+	var tipo = $('id_tipo_documento').value;
+	if(tipo == 0){
+		alert("Debe seleccionar un tipo de documento que sea válido!!");
+		return false;}	
+		
+	var entidad = $('id_entidad').value;
+	if(entidad == 0){
+		alert("Debe seleccionar una entidad de la lista!!");
+		return false;}
+		
+	return true;
+}
+///////////////////////////////////////////////////////////////////
 </script>
 <body style="padding:10px">
 <div id="div_precarga" class="capa_ajax" style="display:none">
@@ -91,7 +110,7 @@ $attributes = array('id'       => 'formulario',
 <tr><td class="campo">Número documento:</td>
 <td>
 <input size="15" type="text" id="documento" name="documento" value="" 
-onkeyup="ajax_showOptions(this,'coam/coam_agenda_citas/buscar_paciente_cita',event)" AUTOCOMPLETE="off">
+onkeyup="ajax_showOptions(this,'coam/coam_agenda_citas/buscar_paciente_cita',event)" AUTOCOMPLETE="off" class="fValidate['nit']">
 <input type="hidden" id="documento_hidden" name="documento_ID" value="-">
 </td>
 <td class="campo">Tipo documento:</td>
@@ -115,7 +134,7 @@ foreach($tipo_documento as $d)
 <td class="campo_centro">
 <?=form_input(array('name' => 'primer_apellido',
 					'id'=> 'primer_apellido',
-					'class'=>"fValidate['alphanumtilde']",
+					'class'=>"fValidate['alphatilde']",
 					'maxlength'   => '20',
 					'size'=> '20'))?></td>
 <td class="campo_centro">
@@ -123,7 +142,7 @@ foreach($tipo_documento as $d)
 					'id'=> 'segundo_apellido',
 					'maxlength'   => '20',
 					'size'=> '20',
-					'class'=>"fValidate['alphanumtilde']"))?>	
+					'class'=>"fValidate['alphatilde']"))?>	
 	</td>
 
     
@@ -132,7 +151,7 @@ foreach($tipo_documento as $d)
 					'id'=> 'primer_nombre',
 					'maxlength'   => '20',
 					'size'=> '20',
-					'class'=>"fValidate['alphanumtilde']"
+					'class'=>"fValidate['alphatilde']"
 					))?></td>
     
     <td class="campo_centro">
@@ -140,7 +159,7 @@ foreach($tipo_documento as $d)
 					'id'=> 'segundo_nombre',
 					'maxlength'   => '20',
 					'size'=> '20',
-					'class'=>"fValidate['alphanumtilde']"))?>
+					'class'=>"fValidate['alphatilde']"))?>
     </td>
   </tr>
 <tr>

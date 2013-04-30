@@ -69,21 +69,6 @@ Ampliar la informaci&oacute;n del paciente
 <tr><td class="campo">Fax:</td><td><?=$tercero['fax']?></td></tr>
 <tr><td class="campo">Correo electrónico:</td><td><?=$tercero['email']?></td></tr>
 <tr><td class="campo">Observaciones:</td><td><?=$tercero['observaciones']?></td></tr>
-<tr><td class="campo">Tipo usuario:</td><td>
-<?
-	foreach($tipo_usuario as $d)
-	{
-		if($paciente['id_cobertura'] == $d['id_cobertura'])
-		{
-			echo $d['cobertura'];
-		}
-	}
-?>
-</td></tr>
-<tr><td class="campo">Tipo de afiliado:</td><td><?=$paciente['tipo_afiliado']?></td></tr>
-<tr><td class="campo">Nivel o categoria:</td><td><?=$paciente['nivel_categoria']?></td></tr>
-<tr><td class="campo">Desplazado:</td><td> <?=$paciente['desplazado']?></td></tr>
-<tr><td class="campo">Observaciones:</td><td><?=$paciente['observaciones']?></td></tr>
 </table>
 <p class="linea_azul">
 <span class="texto_barra">
@@ -203,6 +188,7 @@ foreach($dx as $d)
 ?>
 <tr><td class="campo">Diagnostico <?=$i?>:</td><td>
 <?php
+$i++;
 switch ($d['tipo_dx']) {
     case 1:
         $tipodx = "Impresión diagnóstica";
